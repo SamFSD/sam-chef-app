@@ -1,0 +1,441 @@
+
+<form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()" *ngIf="viewMultiSelect">
+<div class="row header">
+  <div class="col-md-8 p-2">
+    <h2 class="header-text">
+      <!-- <button mat-icon-button type="button" class="icon-btn me-auto ml-3" (click)="closeDialog()">
+        <mat-icon class="clear-icon">filter_list</mat-icon>
+      </button>&nbsp;&nbsp; -->
+      Filter <b>{{route.url.toUpperCase().slice(1)}}</b> Data
+    </h2>
+  </div>
+  <div class="col-md-4 p-3 pt-0" [style.display]="smallForm.showDateSelector ? 'block' : 'none'">
+    <mat-card-content class="modified-mc-content pb-0" style="width: 100%">
+      <mat-expansion-panel class="small-form-panel-expansion" [(expanded)]="smallForm.isMonthRangePickerExpanded">
+        <mat-expansion-panel-header class="small-form-layout-panel-header">
+          <mat-panel-description style="
+            color: rgba(0, 0, 0, 0.87);
+            display: block;
+            margin-top: -0.6rem;
+          ">
+            <div class="row" style="margin-bottom: -0.5rem !important">
+              <div class="col-md-4">
+                <span class="small-form-layout">Selected Date Range</span>
+              </div>
+            </div>
+            <div class="row my-auto">
+              <div class="col">
+                <span> {{ smallForm.dateRange }} </span>
+              </div>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-monthpicker (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+          (rangeComplete)="smallForm.closeMonthPicker()"></app-monthpicker>
+      </mat-expansion-panel>
+    </mat-card-content>
+
+  </div>
+</div>
+  <mat-dialog-content class="mat-typography">
+    <div class="container">
+      <div class="col-md-12">
+        <!-- <mat-card class="small-form-mat-card-general-form-holder p-3">
+              <mat-card-content> -->
+        <div class="row p-0">
+
+          <div class="col-md-12">
+            <mat-slide-toggle
+              (change)="onSelectModeToggle()"
+              checked="true"
+              style="margin-bottom: 0.5rem"
+            >
+            <span>
+              &nbsp;|<span *ngIf="viewMultiSelect" [ngStyle]="{ color: viewMultiSelect ? '#f18a00' : '' }">&nbsp;<b>Multi Select Mode</b></span>
+            </span>
+            </mat-slide-toggle>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Divisions</span>
+            </div>
+            <!-- <select name="division" id="division" multiple formControlName="division">
+                          <option [value]="'full_fleet'"><input type="checkbox" [value]="'full_fleet'" formControlName="division">Full Fleet</option>
+                          <option *ngFor="let x of smallForm.allowedDivs" [value]="x.division">
+                            {{ x.division }}
+                          </option>
+                        </select> -->
+
+                        <mat-card>
+                          <mat-card-content class="p-0">
+                            <div>
+                              <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['full_fleet']}">
+                                <input type="checkbox" class="checkbox p-2" [value]="'full_fleet'" (change)="onCheckboxChange($event, 'full_fleet')" />&nbsp;Full Fleet
+                              </div>
+                              <div class="input pl-2" *ngFor="let div of smallForm.allowedDivs">
+                                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[div.division]}">
+                                  <input type="checkbox" class="checkbox p-2" [value]="div.division" [checked]="divChecked[div.division]"
+                                    (change)="onCheckboxChange($event, div.division)" />&nbsp;{{ div.division }}
+                                </div>
+                              </div>
+                            </div>                            
+                          </mat-card-content>
+                        </mat-card>
+                        
+
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Branches</span>
+            </div>
+            <!-- <select name="division" id="division" multiple>
+              <option [value]="'all_branches'">All Branches</option>
+
+              <option
+                *ngFor="let branches of smallForm.allowedBranches"
+                [value]="branches.branch"
+              >
+                {{ branches.branch.branch }}
+              </option>
+            </select> -->
+            <mat-card>
+              <mat-card-content class="p-0">
+                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['all_branches']}">
+                  <input type="checkbox" class="checkbox p-2" [value]="'full_fleet'" (change)="onBranchCheckboxChange($event, 'all_branches')"/>&nbsp;All Branches
+                </div>
+                <div class="input" *ngFor="let branches of smallForm.allowedBranches">
+                  <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[branches.branch.branch]}">
+                    <input type="checkbox" class="checkbox p-2" [value]="branches.branch.branch" [checked]="divChecked[branches.branch.branch]"
+                    (change)="onBranchCheckboxChange($event, branches.branch.branch)" />&nbsp;{{ branches.branch.branch }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Types</span>
+            </div>
+            <!-- <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="vehicleType"
+            >
+              <option [value]="'all_veh_types'">All Types</option>
+
+              <option
+                *ngFor="let veh of smallForm.allowedVehTypes"
+                [value]="veh"
+              >
+                {{ veh }}
+              </option>
+            </select> -->
+            <mat-card>
+              <mat-card-content class="p-0">
+                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['all_veh_types']}">
+                  <input type="checkbox" class="checkbox p-2" [value]="'all_veh_types'" (change)="onTypeCheckboxChange($event, 'all_veh_types')"/>&nbsp;All Types
+                </div>
+                <div class="input" *ngFor="let veh of smallForm.allowedVehTypes">
+                  <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[veh]}">
+                    <input type="checkbox" class="checkbox p-2" [value]="veh" [checked]="divChecked[veh]"
+                    (change)="onTypeCheckboxChange($event, veh)" />&nbsp;{{ veh }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Make/Models</span>
+            </div>
+            <!-- <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="models"
+            >
+              <option [value]="'all_models'">All Models</option>
+
+              <option
+                *ngFor="let veh of smallForm.allowedModelTypes"
+                [value]="veh.veh_model_map"
+              >
+                {{ veh.veh_model_map }}
+              </option>
+            </select> -->
+            <mat-card>
+              <mat-card-content class="p-0">
+                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['all_models']}">
+                  <input type="checkbox" class="checkbox p-2" [value]="'all_models'" (change)="onModelsCheckboxChange($event, 'all_models')" />&nbsp;All Models
+                </div>
+                <div class="input" *ngFor="let veh of smallForm.allowedModelTypes">
+                  <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[veh.veh_model_map]}">
+                    <input type="checkbox" class="checkbox p-2" [value]="veh.veh_model_map" [checked]="divChecked[veh.veh_model_map]"
+                    (change)="onModelsCheckboxChange($event, veh.veh_model_map)" />&nbsp;{{ veh.veh_model_map }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-3 btm-row assets mt-3" *ngIf="smallForm.showVehicleSelect">
+            <div class="row my-auto">
+              <span class="form-select-header">Assets</span>
+            </div>
+            <!-- <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="registrations"
+            >
+              <option [value]="'all_registrations'">All Assets</option>
+              <option
+                *ngFor="let veh of smallForm.allowedVehicles"
+                [value]="veh"
+              >
+                {{ veh.fleet_no + " (" + veh.vehiclereg + ")" }}
+              </option>
+            </select> -->
+            <mat-card>
+              <mat-card-content class="p-0">
+                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['all_registrations']}">
+                  <input type="checkbox" class="checkbox p-2" [value]="'all_registrations'" (change)="onAssetsCheckboxChange($event, 'all_registrations')"/>&nbsp;All Assets
+                </div>
+                <div class="input" *ngFor="let veh of smallForm.allowedVehicles">
+                  <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[veh.vehiclereg]}">
+                    <input type="checkbox" class="checkbox p-2" [value]="veh.vehiclereg" [checked]="divChecked[veh.vehiclereg]"
+                    (change)="onModelsCheckboxChange($event, veh.vehiclereg)" />&nbsp;{{ veh.fleet_no + " (" + veh.vehiclereg + ")" }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-3 supplier btm-row mt-3" *ngIf="smallForm.showSupplierSelect">
+            <div class="row my-auto">
+              <span class="form-select-header">Suppliers</span>
+            </div>
+            <!-- <select multiple formControlName="suppliers" id="division">
+              <option [value]="'all_suppliers'">All Suppliers</option>
+
+              <option
+                *ngFor="let sup of smallForm.allowedSuppliers"
+                [value]="sup"
+              >
+                {{ sup }}
+              </option>
+            </select> -->
+            <mat-card>
+              <mat-card-content class="p-0">
+                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['all_suppliers']}">
+                  <input type="checkbox" class="checkbox p-2" [value]="'all_suppliers'" (change)="onSupplierCheckboxChange($event, 'all_suppliers')" />&nbsp;All Suppliers
+                </div>
+                <div class="input" *ngFor="let sup of smallForm.allowedSuppliers">
+                  <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[sup]}">
+                    <input type="checkbox" class="checkbox p-2" [value]="sup" [checked]="divChecked[sup]"
+                    (change)="onSupplierCheckboxChange($event, sup)" />&nbsp;{{ sup }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-3 my-auto btm-row mt-3" *ngIf="smallForm.showComponentSelect">
+            <div class="row my-auto">
+              <span class="form-select-header">Components</span>
+            </div>
+            <!-- <select multiple formControlName="components" id="division">
+              <option [value]="''">All Components</option>
+
+              <option
+                *ngFor="let map of smallForm.allowedRepairMaps"
+                [value]="map"
+              >
+                {{ map }}
+              </option>
+            </select> -->
+            <mat-card>
+              <mat-card-content class="p-0">
+                <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked['all_repair_maps']}">
+                  <input type="checkbox" class="checkbox p-2" [value]="'all_repair_maps'" (change)="onComponentCheckboxChange($event, 'all_repair_maps')" />&nbsp;All Components
+                </div>
+                <div class="input" *ngFor="let map of smallForm.allowedRepairMaps">
+                  <div class="p-1 check-input" [ngClass]="{'checked-bg': divChecked[map]}">
+                    <input type="checkbox" class="checkbox p-2" [value]="map" [checked]="divChecked[map]"
+                    (change)="onComponentCheckboxChange($event, map)" />&nbsp;{{ map }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+        <!-- </mat-card-content>
+          </mat-card> -->
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="custom-close-button"
+      style="border: 2px solid #f39200; border-radius: 50px; width: 8rem">Close</button>
+    <button mat-button style="border: 2px solid #36b6c3; border-radius: 50px; width: 8rem" type="submit"
+      [disabled]="!smallForm.canSubmit">
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>
+
+
+<form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()" *ngIf="!viewMultiSelect">
+  <div class="row header">
+    <div class="col-md-8 p-2">
+      <h2 class="header-text">
+        <!-- <button mat-icon-button type="button" class="icon-btn me-auto ml-3" (click)="closeDialog()">
+          <mat-icon class="clear-icon">filter_list</mat-icon>
+        </button>&nbsp;&nbsp; -->
+        Filter <b>{{route.url.toUpperCase().slice(1)}}</b> Data
+      </h2>
+    </div>
+    <div class="col-md-4 p-3 pt-0" [style.display]="smallForm.showDateSelector ? 'block' : 'none'">
+      <mat-card-content class="modified-mc-content pb-0" style="width: 100%">
+        <mat-expansion-panel class="small-form-panel-expansion" [(expanded)]="smallForm.isMonthRangePickerExpanded">
+          <mat-expansion-panel-header class="small-form-layout-panel-header">
+            <mat-panel-description style="
+              color: rgba(0, 0, 0, 0.87);
+              display: block;
+              margin-top: -0.6rem;
+            ">
+              <div class="row" style="margin-bottom: -0.5rem !important">
+                <div class="col-md-4">
+                  <span class="small-form-layout">Selected Date Range</span>
+                </div>
+              </div>
+              <div class="row my-auto">
+                <div class="col">
+                  <span> {{ smallForm.dateRange }} </span>
+                </div>
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-monthpicker (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+            (rangeComplete)="smallForm.closeMonthPicker()"></app-monthpicker>
+        </mat-expansion-panel>
+      </mat-card-content>
+  
+    </div>
+  </div>
+    <mat-dialog-content class="mat-typography">
+      <div class="container">
+        <div class="col-md-12">
+          <!-- <mat-card class="small-form-mat-card-general-form-holder p-3">
+                <mat-card-content> -->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-slide-toggle
+                        (change)="onSelectModeToggle()"
+                        checked="false"
+                        style="margin-bottom: 0.5rem"
+                      >
+                      <span>
+                        <span *ngIf="!viewMultiSelect" [ngStyle]="{ color: !viewMultiSelect ? 'black' : '' }">&nbsp;|&nbsp;<b>Single Select Mode</b></span>
+                      </span>
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Divisions</span>
+                      </div>
+                      <select name="division" id="division" multiple formControlName="division">
+                        <option [value]="'full_fleet'">Full Fleet</option>
+                
+                        <option *ngFor="let x of smallForm.allowedDivs" [value]="x.division">
+                          {{ x.division }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Branches</span>
+                      </div>
+                      <select name="division" id="division" multiple formControlName="branch">
+                        <option [value]="'all_branches'">All Branches</option>
+                
+                        <option *ngFor="let branches of smallForm.allowedBranches" [value]="branches.branch">
+                          {{ branches.branch.branch }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Types</span>
+                      </div>
+                      <select name="division" id="division" multiple formControlName="vehicleType">
+                        <option [value]="'all_veh_types'">All Types</option>
+                
+                        <option *ngFor="let veh of smallForm.allowedVehTypes" [value]="veh">
+                          {{ veh }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Make/Models</span>
+                      </div>
+                      <select name="division" id="division" multiple formControlName="models">
+                        <option [value]="'all_models'">All Models</option>
+                
+                        <option *ngFor="let veh of smallForm.allowedModelTypes" [value]="veh.veh_model_map">
+                          {{ veh.veh_model_map }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 btm-row assets mt-3" *ngIf="smallForm.showVehicleSelect">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Assets</span>
+                      </div>
+                      <select name="division" id="division" multiple formControlName="registrations">
+                        <option [value]="'all_registrations'">All Assets</option>
+                        <option *ngFor="let veh of smallForm.allowedVehicles" [value]="veh">
+                          {{ veh.fleet_no + " (" + veh.vehiclereg + ")" }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 supplier btm-row mt-3" *ngIf="smallForm.showSupplierSelect">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Suppliers</span>
+                      </div>
+                      <select multiple formControlName="suppliers" id="division">
+                        <option [value]="'all_suppliers'">All Suppliers</option>
+                
+                        <option *ngFor="let sup of smallForm.allowedSuppliers" [value]="sup">
+                          {{ sup }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 my-auto btm-row mt-3" *ngIf="smallForm.showComponentSelect">
+                      <div class="row my-auto">
+                        <span class="form-select-header">Components</span>
+                      </div>
+                      <select multiple formControlName="components" id="division">
+                        <option [value]="'all_repair_maps'">All Components</option>
+                
+                        <option *ngFor="let map of smallForm.allowedRepairMaps" [value]="map">
+                          {{ map }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+  
+          <!-- </mat-card-content>
+            </mat-card> -->
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close class="custom-close-button"
+        style="border: 2px solid #f39200; border-radius: 50px; width: 8rem">Close</button>
+      <button mat-button style="border: 2px solid #36b6c3; border-radius: 50px; width: 8rem" type="submit"
+        [disabled]="!smallForm.canSubmit">
+        Submit
+      </button>
+    </mat-dialog-actions>
+  </form>
+  

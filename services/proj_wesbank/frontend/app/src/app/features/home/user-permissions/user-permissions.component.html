@@ -1,0 +1,199 @@
+<br />
+
+<div style="display: flex; justify-content: center; align-items: center">
+  <mat-card style="width: 90%; padding-left: 2rem">
+    <mat-card-content>
+      <h2 class="top-row-header" style="text-align: center">User Management</h2>
+      <br />
+
+      <div class="row mx-auto my-auto">
+        <div class="col mx-auto-my-auto">
+          <button class="btn btn-primary" style="align-items: right; flex: 1 1 auto" (click)="getAllEmployee()">
+            View Users
+          </button>
+        </div>
+        <div class="col mx-auto my-auto">
+          <button class="btn btn-primary" style="align-items: right; flex: 1 1 auto" (click)="createUser()">
+            Create User
+          </button>
+        </div>
+        <div class="col mx-auto my-auto">
+          <button class="btn btn-primary" style="align-items: right; flex: 1 1 auto">
+            Edit User
+          </button>
+        </div>
+        <div class="col mx-auto my-auto">
+          <button class="btn btn-primary" style="align-items: right; flex: 1 1 auto">
+            Delete User
+          </button>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div style="width: 80%; justify-content: center; align-items: center">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="isUserSelected">
+          <div>
+            <div class="col mx-auto my-auto">
+              <mat-form-field style="width: 95%" appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email" placeholder="Email Address" />
+              </mat-form-field>
+            </div>
+
+            <div class="col mx-auto my-auto">First Name</div>
+
+            <div class="col mx-auto my-auto">
+              <mat-form-field style="width: 95%" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="first_name" placeholder="First Name" />
+              </mat-form-field>
+            </div>
+            <div class="col mx-auto my-auto">Last Name</div>
+            <div class="col mx-auto my-auto">
+              <mat-form-field style="width: 95%" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="last_name" placeholder="Last Name" />
+              </mat-form-field>
+            </div>
+            <div class="row mx-auto my-auto">
+              <div class="col mx-auto my-auto">
+                <h2 class="top-row-header">
+                  Is This A SuperUser?
+
+                  <mat-slide-toggle type="Switches" #slideToggle [checked]="isYesOption"
+                    (change)="onSlideToggleChange($event)">
+                  </mat-slide-toggle>
+                </h2>
+                <div *ngIf="isYesOption">
+                  <p>Yes</p>
+                </div>
+                <div *ngIf="!isYesOption">
+                  <p>No</p>
+                </div>
+              </div>
+              <div class="col mx-auto my-auto">
+                <div>
+                  <button mat-raised-button color="primary" type="button" (click)="addPermissionGroup('', '', [])"
+                    [disabled]="isYesOption">
+                    Add Divisions
+                  </button>
+                </div>
+              </div>
+              <div class="col mx-auto my-auto">
+                <div>
+                  <button mat-raised-button color="primary" type="button" (click)="addBranchPermissions('', [])"
+                    [disabled]="isYesOption">
+                    Add Branch
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <br />
+          </div>
+
+          <div *ngFor="let permissionGroup of permissionControls; let i = index" [formGroup]="permissionGroup">
+            <mat-form-field style="width: 95%" appearance="fill">
+              <mat-label>Divisions</mat-label>
+              <mat-select formControlName="division" (selectionChange)="selectDivision($event.value)">
+                <mat-option value="full_fleet">Full Fleet</mat-option>
+
+                <mat-option *ngFor="let division of divisionList" [value]="division">
+                  {{ division }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="width: 95%" appearance="fill" formGroupName="branches">
+              <mat-label>Branch</mat-label>
+
+              <mat-select formControlName="branch" (selectionChange)="selectBranch($event.value)">
+                <mat-option value="all_branches">All Branches</mat-option>
+
+                <mat-option *ngFor="let branch of branchList" [value]="branch">
+                  {{ branch }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="width: 95%" appearance="fill" formGroupName="branches">
+              <mat-label>Select Vehicle Type</mat-label>
+
+              <mat-select multiple formControlName="veh_types" (selectionChange)="selectVehicleType($event.value)">
+                <mat-option [value]="'all_vehicles'"> All Vehicles</mat-option>
+
+                <mat-option *ngFor="let type of vehicleTypeList" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <h2 class="top-row-header">Can The Following User</h2>
+            <section formGroupName="branches">
+              <mat-checkbox formControlName="c">Create Orders</mat-checkbox>
+              <mat-checkbox formControlName="r">Read Orders</mat-checkbox>
+              <mat-checkbox formControlName="u">Update Orders</mat-checkbox>
+              <mat-checkbox formControlName="d">Delete Orders</mat-checkbox>
+            </section>
+          </div>
+          <div *ngIf="
+              showBranchPermissions &&
+              permissionGroup &&
+              userForm.get('branches.branch')?.value ===
+                permissionGroup.get('branches.branch')?.value
+            ">
+            <mat-form-field style="width: 95%" appearance="fill" formGroupName="branches">
+              <mat-label>Branch</mat-label>
+
+              <mat-select formControlName="branch" (selectionChange)="selectBranch($event.value)"
+                [disabled]="isDivDisabled">
+                <mat-option value="all_branches">All Branches</mat-option>
+
+                <mat-option *ngFor="let branch of branchList" [value]="branch">
+                  {{ branch }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="width: 95%" appearance="fill" formGroupName="branches">
+              <mat-label>Select Vehicle Type</mat-label>
+
+              <mat-select multiple formControlName="veh_types" (selectionChange)="selectVehicleType($event.value)"
+                [disabled]="isDivDisabled">
+                <mat-option [value]="'all_vehicles'"> All Vehicles</mat-option>
+
+                <mat-option *ngFor="let type of vehicleTypeList" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <h2 class="top-row-header">Can The Following User</h2>
+            <section formGroupName="branches">
+              <mat-checkbox formControlName="c">Create Orders</mat-checkbox>
+              <mat-checkbox formControlName="r">Read Orders</mat-checkbox>
+              <mat-checkbox formControlName="u">Update Orders</mat-checkbox>
+              <mat-checkbox formControlName="d">Delete Orders</mat-checkbox>
+            </section>
+          </div>
+          <br />
+          <br />
+          <button type="submit" mat-raised-button color="primary">
+            Save User
+          </button>
+        </form>
+      </div>
+
+
+      <mat-card class="col mx-auto my-auto" *ngIf="selectedUser">
+        <mat-card-content>
+          <div id="users-table"></div>
+
+        </mat-card-content>
+      </mat-card>
+      <br />
+      <br />
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,38 @@
+<div class="col mx-auto">
+  <div class="row mx-auto">
+    <div class="col mx-auto">
+      <span class="top-row-header">Vehicles In Fleet</span>
+    </div>
+    <div class="col mx-auto mb-3">
+      <mat-slide-toggle (change)="onSlideToggleChange($event)" checked="false">
+        <span>
+          <span [ngStyle]="{ color: isCommercial ? '' : 'grey' }"
+            >Commercial</span
+          >
+          |
+          <span [ngStyle]="{ color: isCommercial ? 'grey' : '' }"
+            >Passenger</span
+          >
+        </span>
+      </mat-slide-toggle>
+    </div>
+
+    <div class="row mx-auto">
+      <div class="col text-end" style="margin-top: -35px">
+        <mat-icon
+          class="material-icons my-auto"
+          (click)="exportToCSV()"
+          style="color: #69d2dc"
+          >cloud_download</mat-icon
+        >
+      </div>
+    </div>
+    <app-skeleton *ngIf="isLoading" class="skeleton"></app-skeleton>
+
+    <div
+      [ngStyle]="{ display: isLoading ? 'none' : 'block' }"
+      style="width: 100%"
+      id="fleetcount-table"
+    ></div>
+  </div>
+</div>

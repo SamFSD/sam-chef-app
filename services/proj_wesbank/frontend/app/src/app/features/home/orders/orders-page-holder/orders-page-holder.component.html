@@ -1,0 +1,32 @@
+
+<!-- <div class="row p-4">
+  <mat-card class="small-form-mat-card-general-form-holder graphs mx-auto p-3" style="width: 98%; height: auto;">
+    <mat-card-content> -->
+<div class="row mx-auto p-3 row-content">
+  <mat-slide-toggle (change)="onSlideToggleChange($event)" checked="true" class="mb-2">
+    <span>
+      <span [ngStyle]="{ color: isWesbank ? '' : 'grey' }"
+        >Wesbank Orders</span
+      >
+      |
+      <span [ngStyle]="{ color: isWesbank ? 'grey' : '' }"
+        >External Orders</span
+      >
+    </span>
+  </mat-slide-toggle>
+  <div class="mat-card">
+    <ag-grid-angular
+      *ngIf="userCanViewOrders"
+      #agGrid
+      style="width: 100% !important;"
+      class="ag-theme-alpine"
+      rowSelection="multiple"
+      [gridOptions]="gridOptions"
+      [rowData]="ordersToShow"
+      [columnDefs]="columnDefs"
+      [editType]="editType"
+      (rowClicked)="onRowClicked($event)"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

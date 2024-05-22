@@ -1,0 +1,15 @@
+<div class="row mx-auto-my-auto">
+  <div class="col mx-auto my-auto">
+    <h3 class="top-row-header">Driving Event Summary</h3>
+    <div class="col mx-auto my-auto d-flex justify-content-end">
+      <mat-icon
+        class="material-icons my-auto"
+        (click)="exportToCSV()"
+        style="color: #69d2dc"
+        >cloud_download</mat-icon
+      >
+    </div>
+    <app-skeleton *ngIf="isLoading"></app-skeleton>
+    <div style="height: auto" id="driving-events-table-top_row"></div>
+  </div>
+</div>

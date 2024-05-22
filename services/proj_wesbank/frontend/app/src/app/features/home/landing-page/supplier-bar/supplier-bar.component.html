@@ -1,0 +1,6 @@
+<!-- <mat-card> -->
+<app-graph-skeleton *ngIf="isLoading" class="skeleton"></app-graph-skeleton>
+<div *ngIf="!isLoading">
+  <div echarts [options]="spendPerSuppBar" style="height: 400px"></div>
+</div>
+<!-- </mat-card> -->

@@ -1,0 +1,101 @@
+<form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+<div class="container mt-2">
+  <div class="col-md-12">
+      <mat-card class="small-form-mat-card-general-form-holder p-3">
+          <mat-card-content>
+              <div class="row">
+                  <div class="col-md-12">
+                    <h3 class="selected-report-header">
+                      {{ smallForm.selectedReportType?.reportDescription }}
+                    </h3>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Divisions</span>
+                    </div>
+                    <select name="division" id="division" multiple formControlName="division">
+                      <option [value]="'full_fleet'">Full Fleet</option>
+              
+                      <option *ngFor="let x of smallForm.allowedDivs" [value]="x.division">
+                        {{ x.division }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Branches</span>
+                    </div>
+                    <select name="division" id="division" multiple formControlName="branch">
+                      <option [value]="'all_branches'">All Branches</option>
+              
+                      <option *ngFor="let branches of smallForm.allowedBranches" [value]="branches.branch">
+                        {{ branches.branch.branch }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Types</span>
+                    </div>
+                    <select name="division" id="division" multiple formControlName="vehicleType">
+                      <option [value]="'all_veh_types'">All Types</option>
+              
+                      <option *ngFor="let veh of smallForm.allowedVehTypes" [value]="veh">
+                        {{ veh }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Make/Models</span>
+                    </div>
+                    <select name="division" id="division" multiple formControlName="models">
+                      <option [value]="'all_models'">All Models</option>
+              
+                      <option *ngFor="let veh of smallForm.allowedModelTypes" [value]="veh.veh_model_map">
+                        {{ veh.veh_model_map }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 btm-row assets mt-3" *ngIf="smallForm.showVehicleSelect">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Assets</span>
+                    </div>
+                    <select name="division" id="division" multiple formControlName="registrations">
+                      <option [value]="'all_registrations'">All Assets</option>
+                      <option *ngFor="let veh of smallForm.allowedVehicles" [value]="veh">
+                        {{ veh.fleet_no + " (" + veh.vehiclereg + ")" }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 supplier btm-row mt-3" *ngIf="smallForm.showSupplierSelect">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Suppliers</span>
+                    </div>
+                    <select multiple formControlName="suppliers" id="division">
+                      <option [value]="'all_suppliers'">All Suppliers</option>
+              
+                      <option *ngFor="let sup of smallForm.allowedSuppliers" [value]="sup">
+                        {{ sup }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 my-auto btm-row mt-3" *ngIf="smallForm.showComponentSelect">
+                    <div class="row my-auto">
+                      <span class="form-select-header">Components</span>
+                    </div>
+                    <select multiple formControlName="components" id="division">
+                      <option [value]="'all_repair_maps'">All Components</option>
+              
+                      <option *ngFor="let map of smallForm.allowedRepairMaps" [value]="map">
+                        {{ map }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+</form>

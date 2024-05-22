@@ -1,0 +1,146 @@
+<div class="row mt-3 mb-4 top-row">
+  <div class="col-12">
+    <mat-card>
+      <mat-card-content>
+        <div class="icon" align="end">
+          <mat-icon
+            (click)="infoPopup()"
+            fontSet="fa"
+            fontIcon="fa-info"
+            style="position: absolute; color: #7c878e; z-index: 10000"
+          ></mat-icon>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <app-skeleton *ngIf="isLoading" class="skeleton"></app-skeleton>
+
+            <div
+              class="left-col"
+              [ngStyle]="{ display: isLoading ? 'none' : 'block' }"
+              *ngIf="!isLoading"
+            >
+              <div class="row mx-auto">
+                <div class="col mx-auto">
+                  <h6 style="font-size: 20px">Invoice Exceptions</h6>
+                </div>
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  {{ invoiceExceptionCount }}
+                </div>
+
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  <mat-chip
+                    style="
+                      border: solid 2px #d03827;
+                      background-color: #7c878e00;
+                    "
+                    >{{ invoicesExceptions }}</mat-chip
+                  >
+                </div>
+                <hr class="top-row-divider" />
+              </div>
+
+              <div class="row mx-auto">
+                <div class="col mx-auto">
+                  <h6 style="font-size: 20px">Invoice Difference</h6>
+                </div>
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  {{ vehicleCounts }}
+                </div>
+
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  <mat-chip
+                    style="
+                      border: solid 2px #fd7e14;
+                      background-color: #7c878e00;
+                    "
+                    >{{ invoiceDiff }}</mat-chip
+                  >
+                </div>
+                <hr class="top-row-divider" />
+              </div>
+
+              <div class="row mx-auto">
+                <div class="col mx-auto">
+                  <h6 style="font-size: 20px">Order Exceptions</h6>
+                </div>
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  {{ orderExptionCount }}
+                </div>
+
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  <mat-chip
+                    style="
+                      border: solid 2px #e79920;
+                      background-color: #7c878e00;
+                    "
+                  >
+                    {{ ordersExceptions }}</mat-chip
+                  >
+                </div>
+                <hr class="top-row-divider" />
+              </div>
+
+              <div class="row mx-auto">
+                <div class="col mx-auto">
+                  <h6 style="font-size: 20px">Accruals</h6>
+                </div>
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  {{ accrualInvoiceCount }}
+                </div>
+
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  <mat-chip
+                    style="
+                      border: solid 2px #39a750;
+                      background-color: #7c878e00;
+                    "
+                  >
+                    {{ accrualInvoices }}
+                  </mat-chip>
+                </div>
+                <hr class="top-row-divider" />
+              </div>
+
+              <div class="row mx-auto">
+                <div class="col mx-auto my-auto">
+                  <h6 style="font-size: 20px">Completed</h6>
+                </div>
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  {{ completedInvoiceCount }}
+                </div>
+
+                <div class="col mx-auto my-auto" style="text-align: right">
+                  <mat-chip
+                    style="
+                      border: solid 2px #69d2dc;
+                      background-color: #7c878e00;
+                    "
+                  >
+                    {{ completedInvoices }}
+                  </mat-chip>
+                </div>
+                <hr class="top-row-divider" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 right-col">
+            <app-graph-skeleton
+              class="skeleton"
+              *ngIf="isLoading"
+            ></app-graph-skeleton>
+            <div
+              [ngStyle]="{ display: isLoading ? 'none' : 'block' }"
+              class="chart"
+              echarts
+              [options]="pieOptions"
+              style="height: 280px; top: 24px"
+              *ngIf="!isLoading"
+            ></div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

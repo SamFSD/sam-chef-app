@@ -1,0 +1,94 @@
+<br />
+<mat-card
+  class="row mx-auto"
+  style="width: 96.5%; border-radius: 0.75rem; height: auto"
+>
+  <mat-card-content>
+    <div
+      class="row mx-auto my-auto pt-3"
+      style="align-items: center; width: 100%"
+    >
+      <div class="col-3 mx-auto">
+        <app-pav-component-summary></app-pav-component-summary>
+      </div>
+      <div class="col-3 mx-auto">
+        <app-pav-supplier-summary></app-pav-supplier-summary>
+      </div>
+      <div class="col-3 mx-auto">
+        <app-pav-usage-summary></app-pav-usage-summary>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<br /><br />
+<div class="row mx-auto" style="width: 98%">
+  <div class="col mx-auto my-auto">
+    <mat-accordion style="width: 95%">
+      <mat-expansion-panel
+        hideToggle
+        class="small-form-mat-card-general-form-holder graphs mx-auto p-3"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-description style="font-weight: bold; color: #36b6c3">
+            Click To View Invoices Summary
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="row mx-auto my-auto">
+          <div class="col mx-auto my-auto">
+            <app-accruals-invoices [isSingleReg]="true"></app-accruals-invoices>
+            <app-completed-invoices
+              [isSingleReg]="true"
+            ></app-completed-invoices>
+            <app-orders-exceptions [isSingleReg]="true"></app-orders-exceptions>
+            <app-invoice-exceptions [isSingleReg]="true">
+            </app-invoice-exceptions>
+          </div>
+        </div>
+        <br />
+        <br />
+      </mat-expansion-panel>
+      <br />
+
+      <mat-expansion-panel
+        hideToggle
+        class="small-form-mat-card-general-form-holder graphs mx-auto p-3"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-description style="font-weight: bold; color: #36b6c3">
+            Click To View Driving Events Summary
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="col mx-auto my-auto">
+          <div class="row mx-auto my-auto">
+            <app-driving-events [isSingleReg]="true"></app-driving-events>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <br />
+
+      <mat-expansion-panel
+        hideToggle
+        class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-4"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-description style="font-weight: bold; color: #36b6c3">
+            Click To View Stats Overview Summary
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="col mx-auto my-auto">
+          <br />
+          <div class="row mx-auto my-auto">
+            <app-stats-sankey></app-stats-sankey>
+          </div>
+          <br /><br />
+          <app-stats-supplier-box></app-stats-supplier-box>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+<br /><br />
+<br /><br />

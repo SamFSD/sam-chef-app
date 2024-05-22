@@ -1,0 +1,176 @@
+<br />
+<div class="row mx-auto">
+  <div class="col mx-auto card-container">
+    <h2 style="text-align: center">
+      {{ inputData.isEditMode ? editRecord : addRecord }}:
+      {{ inputData.selectedBranch }}
+    </h2>
+    <hr />
+    <form [formGroup]="dtFormGroup" style="display: 100%; width: 100%">
+      <div class="row mx-auto" style="font-size: 18px">
+        <h5 class="top-row-header">
+          {{ inputData.isEditMode ? editRecord : addRecord }}
+        </h5>
+        <div class="col mx-auto" style="font-size: 18px">
+          <mat-form-field>
+            <mat-label> Start Date </mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+              (dateChange)="chosenMonthHandler($event, picker)"
+            >
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col mx-auto" style="font-size: 18px">
+          <mat-form-field>
+            <mat-label> Expected End Date </mat-label>
+            <input
+              matInput
+              [matDatepicker]="endPicker"
+              formControlName="end_date"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="endPicker"
+              (dateChange)="chosenMonthHandler($event, endPicker)"
+            >
+            </mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mx-auto" style="padding: 1rem">
+        <div class="col mx-auto">
+          <mat-slide-toggle
+            (change)="onSlideChangeVehicleOrFleetNo($event)"
+            checked="true"
+            >{{ newOrderFormToggleText }}</mat-slide-toggle
+          >
+        </div>
+      </div>
+
+      <div class="row mx-auto">
+        <div class="col mx-auto" style="font-size: 18px">
+          <mat-form-field>
+            <mat-label>Fleet Number</mat-label>
+            <input
+              matInput
+              formControlName="fleet_no"
+              [matAutocomplete]="autoFleetNumber"
+              (input)="filteredFleetNumberDropdown($event)"
+            />
+            <mat-autocomplete
+              #autoFleetNumber="matAutocomplete"
+              (optionSelected)="selectedFleetNumberDropDown($event)"
+            >
+              <mat-option
+                *ngFor="let fleet_no of filteredFleetNumbers"
+                [value]="fleet_no"
+                >{{ fleet_no }}</mat-option
+              >
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div class="col mx-auto" style="font-size: 18px">
+          <mat-form-field>
+            <mat-label>Registration</mat-label>
+            <input
+              matInput
+              formControlName="vehiclereg"
+              [matAutocomplete]="autoRegistration"
+              (input)="filteredRegistrationDropdown($event)"
+            />
+
+            <mat-autocomplete
+              #autoRegistration="matAutocomplete"
+              (optionSelected)="selectedRegDropDown($event)"
+            >
+              <mat-option
+                *ngFor="let reg of filteredRegistration"
+                [value]="reg"
+              >
+                <span>{{ reg }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mx-auto">
+        <div class="col mx-auto"></div>
+
+        <div class="col mx-auto" style="font-size: 18px"></div>
+      </div>
+
+      <div class="row mx-auto" style="font-size: 18px"></div>
+
+      <div class="row mx-auto" style="font-size: 18px">
+        <div class="col mx-auto" style="font-size: 18px">
+          <mat-form-field>
+            <mat-label>Odometer</mat-label>
+            <input matInput formControlName="odo" />
+          </mat-form-field>
+        </div>
+        <div class="col mx-auto" style="font-size: 18px">
+          <mat-form-field>
+            <mat-label>Service Provider</mat-label>
+            <input
+              matInput
+              formControlName="service_provider"
+              aria-label="Service Provider"
+              [matAutocomplete]="autoServiceProvider"
+              (input)="filteredSuppliersDropDowns($event)"
+            />
+
+            <mat-autocomplete
+              #autoServiceProvider="matAutocomplete"
+              (optionSelected)="selectedSupplierDropDown($event)"
+            >
+              <mat-option
+                *ngFor="let supplier of filteredSuppliers"
+                [value]="supplier.service_provider"
+              >
+                <span>{{ supplier.service_provider }}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Reason For Downtime</label>
+        <textarea
+          class="form-control"
+          formControlName="reason"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <div class="row mx-auto">
+        <div class="col mx-auto">
+          <mat-dialog-actions align="end">
+            <!-- <button mat-button mat-dialog-close (click)="cancelOrder()">
+              Cancel
+            </button> -->
+            <button
+              mat-button
+              cdkFocusInitial
+              (click)="saveOrder()"
+              [disabled]="!dtFormGroup.valid"
+            >
+              {{
+                inputData.isEditMode
+                  ? "Update Record"
+                  : isMilesOrders
+                  ? "Add Record"
+                  : "Add External Order"
+              }}
+            </button>
+          </mat-dialog-actions>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

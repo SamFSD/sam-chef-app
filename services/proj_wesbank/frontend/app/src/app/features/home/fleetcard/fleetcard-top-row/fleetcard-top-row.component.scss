@@ -1,0 +1,31 @@
+.description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between items */
+  }
+  
+  .description-item {
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+  }
+  .icon-size {
+    font-size: 100px;
+    height: 100px;
+    width: 100px;
+  }
+
+::ng-deep  .tabulator .tabulator-header .tabulator-header-contents .tabulator-headers {
+    display: inline-block;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.details {
+  margin-left: 30px !important;
+  display: inline-block;
+}
+
+.fa {
+  margin-bottom: 20px !important;
+  color: #15a3b3;
+}

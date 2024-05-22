@@ -1,0 +1,114 @@
+<div *ngIf="divFound">
+  <div class="row" style="height: 25rem">
+    <span class="col-4" style="max-height: 100%; height: 100%">
+
+      <app-pi-chart [division]="searchedDivision"></app-pi-chart>
+    </span>
+    <div class="col" style="max-height: 100%; height: 100%">
+      <span style="max-height: 100%; height: 100%"><app-header-stats
+          [division]="searchedDivision"></app-header-stats></span>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <app-branch-component-cpks [division]="searchedDivision"></app-branch-component-cpks>
+    </div>
+    <br />
+    <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Supplier Overviews</mat-panel-title>
+            <mat-panel-description>
+              View Supplier overviews for {{ searchedDivision }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-supplier-overview [division]="searchedDivision"></app-supplier-overview>
+        </mat-expansion-panel></mat-accordion>
+    </mat-card>
+    <br />
+    <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Model and Type CPK's</mat-panel-title>
+            <mat-panel-description>
+              View CPK's per model and vehicle type for {{ searchedDivision }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-division-quick-stats [division]="searchedDivision"></app-division-quick-stats>
+        </mat-expansion-panel></mat-accordion>
+    </mat-card>
+    <br />
+    <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Costs per Component</mat-panel-title>
+            <mat-panel-description>
+              View Component Costs for {{ searchedDivision }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-component-costs-holder [branches]="branchesInDiv"></app-component-costs-holder>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+    <br />
+    <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                        ">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Asset list</mat-panel-title>
+            <mat-panel-description>
+              View all asset details for {{ searchedDivision }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-fleetlist></app-fleetlist> </mat-expansion-panel></mat-accordion>
+    </mat-card>
+    <br />
+    <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                ">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Asset Usage</mat-panel-title>
+            <mat-panel-description>
+              View vehicle usage for {{ searchedDivision }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-usage-holder [branches]="branchesInDiv"></app-usage-holder> </mat-expansion-panel></mat-accordion>
+    </mat-card>
+    <br />
+    <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                ">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="branchesPanelOpenState = true" (closed)="branchesPanelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Branch Overviews</mat-panel-title>
+            <mat-panel-description>
+              View Branch overviews for {{ searchedDivision }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row" *ngFor="let branch of branchesInDiv">
+            <mat-card style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                                        ">>
+              <app-branch-holder [branch]="branch"></app-branch-holder>
+            </mat-card>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card>
+
+    <mat-card *ngIf="!divFound" style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                ">>
+      <mat-card-content>
+        <mat-label> Please select a division </mat-label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="row" style="height: 4 rem; padding-top: 3rem"></div>
+</div>

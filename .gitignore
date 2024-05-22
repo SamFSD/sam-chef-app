@@ -1,0 +1,23 @@
+
+
+
+services/project_fleetform/app/
+services/project_fleetform/app/node_modules/
+services/lunchbuyer/app/
+services/lunchbuyer/app/node_modules/
+services/proj_wesbank/backend/src/app/api/v0/db_creds.py
+
+
+
+services/proj_wesbank/frontend/app/.yarn/
+services/project_fleetform/app/.yarn/
+#  add postgress creds to git ignore 
+services/proj_wesbank/backend/src/app/api/v0/.env
+
+services/proj_wesbank/frontend/app/src/app/core/api/api_service
+services/proj_wesbank/frontend/app/.yarn/
+services/proj_wesbank/frontend/app/.yarn/
+.vscode/settings.json
+services/proj_wesbank/frontend/app/.firebase copy/hosting.ZGlzdA.cache
+import_scripts/.env
+services/_templates/_mat_web/app/.yarn/

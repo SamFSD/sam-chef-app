@@ -1,0 +1,28 @@
+<mat-card class="small-form-mat-card-general-form-holder mt-3">
+  <mat-card-content>
+    <div class="row mx-auto my-auto">
+      <div class="col mx-auto my-auto">
+        <h2 class="top-row-header">Overview</h2>
+        <app-skeleton *ngIf="isLoading"></app-skeleton>
+        <div *ngIf="!isLoading" class="row mx-auto-my-auto">
+          <div class="col mx-auto my-auto"></div>
+          <div class="col mx-auto my-auto">
+            <p>Avg. CPK Impact (Trailers Excluded)</p>
+          </div>
+        </div>
+        <div *ngIf="!isLoading" class="row mx-auto-my-auto">
+          <div class="col mx-auto my-auto">
+            <p class="form-control">Supplier</p>
+            <p class="form-control">Component</p>
+            <p class="form-control">Asset</p>
+          </div>
+          <div *ngIf="!isLoading" class="col mx-auto my-auto">
+            <p class="form-control">{{ supplierCPK }}</p>
+            <p class="form-control">{{ componentCPK }}</p>
+            <p class="form-control">{{ assetCPK }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

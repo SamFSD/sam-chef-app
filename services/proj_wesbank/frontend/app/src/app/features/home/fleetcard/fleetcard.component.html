@@ -1,0 +1,82 @@
+<div class="row mx-auto mb-4 main-row">
+  <div class="col mx-auto my-auto">
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3"
+    >
+      <mat-card-content>
+        <div class="row mx-auto">
+          <div class="col p-0">
+            <app-skeleton
+              *ngIf="!fleetcardTopRow"
+              class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3"
+            ></app-skeleton>
+            <app-fleetcard-top-row
+              [fleetcardTopRow]="fleetcardTopRow"
+            ></app-fleetcard-top-row>
+            <h1
+              class="text-center"
+              *ngIf="fleetcardTopRow.length === 0"
+              style="color: #15a3b3"
+            >
+              No Data For Current Selection
+            </h1>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3 mt-4"
+    >
+      <mat-card-content style="height: auto">
+        <div class="row mx-auto">
+          <div class="col p-0">
+            <app-skeleton
+              *ngIf="!spendpercategory"
+              class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3"
+            ></app-skeleton>
+            <app-spend-per-sup-category
+              [spendpercategory]="spendpercategory"
+            ></app-spend-per-sup-category>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3 mt-4"
+    >
+      <mat-card-content>
+        <div class="row mx-auto">
+          <div class="col p-0">
+            <app-skeleton
+              *ngIf="!fuelCpkAndCons"
+              class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3"
+            ></app-skeleton>
+            <app-fuel-cpk-and-consuptions
+              [fuelCpkAndCons]="fuelCpkAndCons"
+            ></app-fuel-cpk-and-consuptions>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3 mt-4"
+    >
+      <mat-card-content style="height: auto">
+        <div class="row mx-auto">
+          <div class="col p-0">
+            <app-skeleton
+              *ngIf="!fuelSpendGraph"
+              class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3"
+            ></app-skeleton>
+            <app-fuel-spend-per-month-graph
+              [fuelSpendGraph]="fuelSpendGraph"
+            ></app-fuel-spend-per-month-graph>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

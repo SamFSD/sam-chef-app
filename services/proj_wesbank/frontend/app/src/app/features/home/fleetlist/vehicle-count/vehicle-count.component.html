@@ -1,0 +1,80 @@
+<mat-card class="small-form-mat-card-general-form-holder"
+  ><br />
+  <mat-card-content>
+    <div class="row" style="padding-top: 1.4rem;">
+      <div class="col mx-auto top-row-header" style="text-align: center">
+        Vehicle Type
+      </div>
+      <div class="col mx-auto top-row-header" style="text-align: center">
+        Total Count
+      </div>
+      <div class="col mx-auto top-row-header" style="text-align: center">
+        MM Count
+      </div>
+      <div class="col mx-auto top-row-header" style="text-align: center">
+        OPL Count
+      </div>
+      <div class="col mx-auto top-row-header" style="text-align: center">
+        FML Count
+      </div>
+    </div>
+    <br />
+
+    <div *ngFor="let type of vehTypeCounts.slice(0, vehTypeCounts.length - 1)">
+      <div class="row mx-auto">
+        <div class="col mx-auto my-auto">
+          {{ type.veh_type_map }}
+        </div>
+        <div class="col mx-auto my-auto" style="text-align: center">
+          {{ type.total_count }}
+        </div>
+        <div class="col mx-auto my-auto" style="text-align: center">
+          {{ type.mm_count }}
+        </div>
+        <div class="col mx-auto my-auto" style="text-align: center">
+          {{ type.opl_count }}
+        </div>
+        <div class="col mx-auto my-auto" style="text-align: center">
+          {{ type.fml_count }}
+        </div>
+        <hr style="margin: 0; padding: 0" class="top-row-header" />
+      </div>
+    </div>
+    <br />
+    <div *ngIf="vehTypeCounts.length > 0">
+      <div class="row mx-auto">
+        <div class="col mx-auto my-auto" style="text-align: center">
+          <mat-chip class="top-row-totals-chip">
+            {{ vehTypeCounts[vehTypeCounts.length - 1].veh_type_map }} Counts
+          </mat-chip>
+        </div>
+
+        <div class="col mx-auto my-auto" style="text-align: center">
+          <mat-chip class="top-row-totals-chip" style="text-align: center">
+            {{ vehTypeCounts[vehTypeCounts.length - 1].total_count }}
+          </mat-chip>
+        </div>
+
+        <div class="col mx-auto my-auto" style="text-align: center">
+          <mat-chip class="top-row-totals-chip" style="text-align: center">
+            {{ vehTypeCounts[vehTypeCounts.length - 1].mm_count }}
+          </mat-chip>
+        </div>
+
+        <div class="col mx-auto my-auto" style="text-align: center">
+          <mat-chip class="top-row-totals-chip" style="text-align: center">
+            {{ vehTypeCounts[vehTypeCounts.length - 1].opl_count }}
+          </mat-chip>
+        </div>
+
+        <div class="col mx-auto my-auto" style="text-align: center">
+          <mat-chip class="top-row-totals-chip" style="text-align: center">
+            {{ vehTypeCounts[vehTypeCounts.length - 1].fml_count }}
+          </mat-chip>
+        </div>
+        <br />
+      </div>
+    </div>
+    <br
+  /></mat-card-content>
+</mat-card>

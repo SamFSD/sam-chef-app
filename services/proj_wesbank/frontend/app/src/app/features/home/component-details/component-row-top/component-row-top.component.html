@@ -1,0 +1,40 @@
+<mat-card class="small-form-mat-card-general-form-holder">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-6 p-4">
+        <h1 class="header">Top 10 Most Expensive Assets</h1>
+        <div style="text-align: right; margin-top: -37px; padding-right: 60px">
+          <mat-icon
+            (click)="downloadCsv('mostExpensive')"
+            class="material-icons my-auto"
+            style="color: #69d2dc"
+            >cloud_download</mat-icon
+          >
+          <app-skeleton *ngIf="isLoadingMost" class="skeleton"></app-skeleton>
+        </div>
+        <div
+          [ngStyle]="{ display: isLoadingMost ? 'none' : 'block' }"
+          style="height: 100%; width: 95%"
+          id="mostExpensiveVeh-table"
+        ></div>
+      </div>
+      <div class="col-md-6 p-4">
+        <h1 class="header">Top 10 Least Expensive Assets</h1>
+        <div style="text-align: right; margin-top: -37px; padding-right: 60px">
+          <mat-icon
+            (click)="downloadCsv('leastExpensive')"
+            class="material-icons my-auto"
+            style="color: #69d2dc"
+            >cloud_download</mat-icon
+          >
+          <app-skeleton *ngIf="isLoadingMost" class="skeleton"></app-skeleton>
+        </div>
+        <div
+          [ngStyle]="{ display: isLoadingMost ? 'none' : 'block' }"
+          style="height: 100%; width: 95%"
+          id="leastExpensiveVeh-table"
+        ></div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

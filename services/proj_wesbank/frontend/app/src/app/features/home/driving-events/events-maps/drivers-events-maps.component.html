@@ -1,0 +1,13 @@
+<div class="row mx-auto my-auto">
+  <div class="col mx-auto my-auto">
+    <div class="col mx-auto my-auto mt-4">
+      <h3 class="top-row-header">Driving Events Map</h3>
+      <app-skeleton *ngIf="isLoading" class="skeleton"></app-skeleton>
+    </div>
+    <div
+      id="map"
+      [ngStyle]="{ display: isLoading ? 'none' : 'block' }"
+      style="height: 550px; width: 100%"
+    ></div>
+  </div>
+</div>

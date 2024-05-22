@@ -1,0 +1,19 @@
+<div class="row mx-auto justify-content-center mt-4">
+  <div
+    *ngFor="let repairType of repairTypesTopRowData.repair_type_top"
+    class="col-md-3 d-flex"
+  >
+    <i style="font-size: 76px" class="fa {{ repairType.icon }}"></i>
+    <div class="details ms-auto mt-2">
+      <span
+        ><b>{{ repairType.title }}</b></span
+      ><br />
+      <span
+        >Repair Counts: <b>{{ repairType.count }}</b></span
+      ><br />
+      <span
+        >Repair Value: <b>{{ repairType.value | toTabZAR }}</b></span
+      >
+    </div>
+  </div>
+</div>

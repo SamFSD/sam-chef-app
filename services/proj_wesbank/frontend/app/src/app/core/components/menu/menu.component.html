@@ -1,0 +1,75 @@
+<mat-sidenav-container class="mat-sidenav-container">
+  <mat-sidenav #sidenav mode="side" [opened]="expandedSidenav">
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let nav of overviewNavs"
+        (click)="navigate(nav.link)"
+      >
+        <mat-icon matListItemIcon>{{ nav.icon }}</mat-icon>
+        <h3 matListItemTitle class="item-title">{{ nav.name }}</h3>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout.xs="column" fxLayoutAlign="space-between start">
+    <ng-container>
+    
+      <div
+        class="row mx-auto mb-0"
+        style="width: 98%"
+        *ngIf="showSmallForm"
+      >
+
+      <div
+        [ngClass]="{
+          'col-12': layoutType === 'full-page',
+          'col-3': layoutType === 'compact'
+        }"
+        class="mb-3"
+      >
+        <!-- <app-small-form-component></app-small-form-component> -->
+      </div>
+
+        <div class="col-md-12" *ngIf="showDriversEventsTopRow">
+          <app-drivers-event-top-row></app-drivers-event-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showDashboardTopRow">
+          <app-dashboard-top-row></app-dashboard-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showLandingPageTopRow">
+          <app-stats-row-top></app-stats-row-top>
+        </div>
+        <div class="col-md-12" *ngIf="showOrdersBalancesTopRow">
+          <app-orders-balances-top-row></app-orders-balances-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showCPKUsageTopRow">
+          <app-usage-top-row></app-usage-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showComponentPageTopRow">
+          <app-component-row-top></app-component-row-top>
+        </div>
+        <div class="col-md-12" *ngIf="showInvStatusTopRow">
+          <app-invoice-status-top-row></app-invoice-status-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showSupplierTopRow">
+          <app-supplier-top-row></app-supplier-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showExpirationsTopRow">
+          <app-expirations-top-row></app-expirations-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showFleetlistVehicleCountTopRow">
+          <app-vehicle-count></app-vehicle-count>
+        </div>
+        <div class="col-md-12" *ngIf="showPavTopRow">
+          <app-pav-top-row></app-pav-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="showStatsTopRow">
+          <app-stats-top-row></app-stats-top-row>
+        </div>
+        <div class="col-md-12" *ngIf="shoOrdersPageTopRow">
+          <app-orders-top-row></app-orders-top-row>
+        </div>
+      </div>
+    </ng-container>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

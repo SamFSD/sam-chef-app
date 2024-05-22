@@ -1,0 +1,7 @@
+<h5 class="top-row-header">Supplier Summary</h5>
+<app-graph-skeleton *ngIf="isLoading" class="skeleton"></app-graph-skeleton>
+<div *ngIf="!isLoading">
+  <div *ngIf="showGraph" echarts [options]="pavSupplierSummaryGraph"></div>
+</div>
+<br>
+<br>

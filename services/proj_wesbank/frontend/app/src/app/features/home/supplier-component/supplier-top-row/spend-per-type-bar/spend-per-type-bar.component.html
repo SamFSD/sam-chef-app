@@ -1,0 +1,2 @@
+<app-graph-skeleton *ngIf="isLoading" class="skeleton"></app-graph-skeleton>
+<div *ngIf="!isLoading" echarts [options]="chartOption" class="echarts"></div>

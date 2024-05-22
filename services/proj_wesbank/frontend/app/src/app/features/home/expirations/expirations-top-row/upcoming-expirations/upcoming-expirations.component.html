@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">License</div>
+      <div class="col">Contract</div>
+    </div>
+    <hr class="top-row-divider" />
+    <div class="row">
+      <div class="col" style="text-align: center">Expired</div>
+      <div class="col" (click)="onLicensePopup('Expired')">
+        {{ expiredLic }}
+      </div>
+      <div class="col" (click)="onContractPopup('Expired')">
+        {{ expiredContract }}
+      </div>
+    </div>
+    <hr class="top-row-divider" />
+    <div class="row">
+      <div class="col" style="text-align: center">{{ nextMonth }}</div>
+      <div class="col" (click)="onLicensePopup(nextMonthYear)">
+        {{ nextMonthLicExp }}
+      </div>
+      <div class="col" (click)="onContractPopup(nextMonthYear)">
+        {{ nextMonthContractExp }}
+      </div>
+    </div>
+    <hr class="top-row-divider" />
+    <div class="row">
+      <div class="col" style="text-align: center">{{ monthAfterNext }}</div>
+      <div class="col" (click)="onLicensePopup(next2MonthYear)">
+        {{ twoMonthsLicExp }}
+      </div>
+      <div class="col" (click)="onContractPopup(next2MonthYear)">
+        {{ twoMonthsContractExp }}
+      </div>
+    </div>
+  </div>
+</div>

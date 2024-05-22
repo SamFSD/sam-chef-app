@@ -1,0 +1,35 @@
+<div class="row mx-auto btm-row mt-3">
+  <div class="col">
+    <mat-card class="small-form-mat-card-general-form-holder graphs mx-auto">
+      <mat-card-content>
+        <div class="row">
+          <div class="col mx-auto my-auto">
+            <app-vehicle-count-pie [piData]="piData"></app-vehicle-count-pie>
+          </div>
+          <div class="col mx-auto my-auto">
+            <br />
+            <app-supplier-bar
+              [supplierBarData]="supplierBarData"
+            ></app-supplier-bar>
+          </div>
+          <div class="col mx-auto my-auto">
+            <br />
+            <app-component-bar
+              [componentBarData]="componentBarData"
+            ></app-component-bar>
+          </div>
+          <div class="col mx-auto my-auto">
+            <br />
+            <app-invoice-status-bar
+              [invoiceSatusBarData]="invoiceSatusBarData"
+            ></app-invoice-status-bar>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />

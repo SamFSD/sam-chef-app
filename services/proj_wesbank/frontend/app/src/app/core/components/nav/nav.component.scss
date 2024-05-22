@@ -1,0 +1,37 @@
+.mat-toolbar {
+  position: fixed;
+  z-index: 12
+}
+
+.mainHeaderLogo {
+  cursor: pointer !important;
+}
+
+.loader-container {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+app-small-form-component {
+  z-index: 3 !important;
+}
+
+mat-divider {
+  width: 80%;
+  margin: auto;
+}
+
+mat-sidenav-content {
+  min-height: calc(100vh - 64px);
+}
+
+.spacer{
+  flex-grow: 1;
+}
+
+
+:host ::ng-deep .custom-dialog-container {
+  border-radius: 16px !important;
+  overflow: hidden;
+}

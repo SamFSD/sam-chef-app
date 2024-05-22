@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col">
+    <!-- <mat-card-header>
+        <mat-card-title>Selected Month - Per Day</mat-card-title>
+    </mat-card-header> -->
+
+    <div class="row mx-auto mt-3" style="width: 98.5%">
+      <mat-card class="small-form-mat-card-general-form-holder graphs mx-auto">
+        <div class="col">
+          <app-per-type-usage-table [perTypeUsageTableData]="perTypeUsageTableData"></app-per-type-usage-table>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div class="row mx-auto mt-4" style="width: 98.5%">
+  <mat-card class="small-form-mat-card-general-form-holder graphs mx-auto">
+    <!-- <div class="row">
+      <div class="col"> -->
+    <div class="row">
+      <h6 class="top-row-header">Usage (One Year)</h6>
+    </div>
+    <app-all-time-graph [allTimeGraphData]="allTimeGraphData"></app-all-time-graph>
+    <!-- </div>
+    </div> -->
+  </mat-card>
+</div>
+<div class="row mx-auto mt-4 btm-row" style="width: 98.5%">
+  <mat-card class="small-form-mat-card-general-form-holder graphs mx-auto">
+    <div class="row">
+      <div class="col"></div>
+      <app-per-asset-usage-table [perAssetsTableData]="perAssetsTableData"
+        style="margin-bottom: 1rem"
+      ></app-per-asset-usage-table>
+    </div>
+  </mat-card>
+</div>

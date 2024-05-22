@@ -1,0 +1,28 @@
+<div class="row mx-auto my-auto">
+  <div class="col mx-auto my-auto">
+    <h2 class="top-row-header">Total Spend Per Vendor</h2>
+    <div class="row mx-auto my-auto">
+      <div class="row mx-auto">
+        <div class="col text-end" style="margin-top: -35px">
+          <mat-icon
+            class="material-icons my-auto"
+            (click)="exportToCSV()"
+            style="color: #69d2dc"
+            >cloud_download</mat-icon
+          >
+        </div>
+      </div>
+      <app-skeleton
+        class="skeleton mt-4"
+        [ngStyle]="{ display: isLoading ? 'block' : 'none' }"
+      ></app-skeleton>
+
+      <div
+        class="table"
+        style="overflow: auto; position: relative"
+        id="spend-per-cat-table"
+        [ngStyle]="{ display: isLoading ? 'none' : 'block' }"
+      ></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<app-graph-skeleton *ngIf="isLoading" class="skeleton"></app-graph-skeleton>
+<div *ngIf="!isLoading">
+  <div class="row my-auto" style="width: 90%">
+    <div class="col my-auto" style="text-align: right">
+      <div>
+        <mat-icon
+          (click)="infoPopup()"
+          fontSet="fa"
+          fontIcon="fa-info"
+          style="position: absolute; color: #7c878e; z-index: 10000"
+        ></mat-icon>
+      </div>
+
+      <div></div>
+    </div>
+  </div>
+  <div
+    echarts
+    [options]="invoiceStatusBar"
+    class="chart"
+    (chartClick)="onChartClicked($event)"
+    style="height: 400px"
+  ></div>
+</div>

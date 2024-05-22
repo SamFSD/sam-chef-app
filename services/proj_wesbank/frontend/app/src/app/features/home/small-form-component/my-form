@@ -1,0 +1,1357 @@
+<!-- //////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////// -->
+<!-- ///this is here to iniate the date ranges so the form can finish loading.  It does not display                     -->
+<!-- <app-monthpicker -->
+<!-- (monthRangeSelected)="smallForm.dateSelectorRange($event)" -->
+<!-- (rangeComplete)="smallForm.closeMonthPicker()" -->
+<!-- style="display: none" -->
+<!-- ></app-monthpicker> -->
+
+<!-- ///////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////// -->
+<!-- *********************************************************************************************************************** -->
+<!-- ********************************************  GENERAL LAYOUT  ********************************************************* -->
+<!-- *********************************************************************************************************************** -->
+
+<mat-card
+  *ngIf="smallForm.formPage === 'extension'"
+  class="small-form-mat-card-general-form-holder p-3"
+>
+  <mat-card-content>
+    <form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+      <!-- <div class="row">
+        <div class="col">
+          <h2 class="form-select-header">Filter</h2>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-md-2 " [style.display]="smallForm.showDateSelector ? 'block' : 'none'">
+          <mat-card-content
+          class="modified-mc-content"
+          style="width: 100%"
+          
+        >
+          <mat-expansion-panel
+            class="small-form-panel-expansion"
+            [(expanded)]="smallForm.isMonthRangePickerExpanded"
+          >
+            <mat-expansion-panel-header class="small-form-layout-panel-header">
+              <!-- <mat-panel-title > </mat-panel-title> -->
+  
+              <mat-panel-description
+                style="
+                  color: rgba(0, 0, 0, 0.87);
+                  display: block;
+                  margin-top: -0.6rem;
+                "
+              >
+                <div class="row" style="margin-bottom: -0.5rem !important">
+                  <div class="col">
+                    <span class="small-form-layout">Selected Date Range</span>
+                  </div>
+                </div>
+                <div class="row my-auto">
+                  <div class="col">
+                    <span> {{ smallForm.dateRange }} </span>
+                  </div>
+                </div>
+  
+                <!-- <mat-icon>date_range</mat-icon> -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <app-monthpicker
+              (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+              (rangeComplete)="smallForm.closeMonthPicker()"
+            ></app-monthpicker>
+          </mat-expansion-panel>
+        </mat-card-content>
+        </div>
+  
+        <div class="col-md-2">
+          <mat-form-field
+          appearance="fill"
+          style="width: 100%; margin-bottom: -0.7em"
+        >
+          <mat-label>Division</mat-label>
+          <mat-select formControlName="division" multiple>
+            <mat-option
+              [value]="'full_fleet'"
+              #AllDivisionSelected
+              (click)="onAllDivisionSelected()"
+              >Full Fleet</mat-option
+            >
+            <div
+              *ngIf="isLoading"
+              class="col d-flex align-items-center justify-content-center"
+              style="height: 0.5%; text-align: center"
+            >
+              <mat-spinner></mat-spinner>
+            </div>
+            <mat-option
+              *ngFor="let x of smallForm.allowedDivs"
+              [value]="x.division"
+              (click)="onDivisionSelected()"
+            >
+              {{ x.division }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+  
+        <div class="col-md-2" *ngIf="route.url !== '/home' && route.url !== '/' && route.url !== '/fleetlist' && route.url !== '/Fleetcard' && route.url !== '/repair-types' && route.url !== '/usage' && route.url !== '/expirations'">
+          <mat-form-field
+            appearance="fill"
+            style="width: 100%; margin-bottom: -0.7em"
+          >
+            <mat-label>Branches</mat-label>
+            <mat-select formControlName="branch" multiple>
+              <mat-option
+                [value]="'all_branches'"
+                #AllBranchSelected
+                (click)="onAllBranchSelected()"
+                >All Branches</mat-option
+              >
+    
+              <mat-option
+                *ngFor="let branches of smallForm.allowedBranches"
+                [value]="branches.branch"
+                (click)="onBranchSelected()"
+              >
+                {{ branches.branch.branch }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3" *ngIf="route.url === '/' || route.url === '/home' || route.url === '/Fleetcard' || route.url === '/repair-types' || route.url === '/usage' || route.url === '/expirations'">
+          <mat-form-field
+            appearance="fill"
+            style="width: 100%; margin-bottom: -0.7em"
+          >
+            <mat-label>Branches</mat-label>
+            <mat-select formControlName="branch" multiple>
+              <mat-option
+                [value]="'all_branches'"
+                #AllBranchSelected
+                (click)="onAllBranchSelected()"
+                >All Branches</mat-option
+              >
+    
+              <mat-option
+                *ngFor="let branches of smallForm.allowedBranches"
+                [value]="branches.branch"
+                (click)="onBranchSelected()"
+              >
+                {{ branches.branch.branch }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-2">
+          <mat-form-field
+            appearance="fill"
+            style="width: 100%; margin-bottom: -0.7em"
+            *ngIf="showVehiclesTypes"
+          >
+            <mat-label>Vehicle Type</mat-label>
+            <mat-select formControlName="vehicleType" multiple>
+              <mat-option
+                [value]="'all_veh_types'"
+                #allTypesSelected
+                (click)="onAllTypesSelected()"
+                >All Types</mat-option
+              >
+              <mat-option
+                *ngFor="let veh of smallForm.allowedVehTypes"
+                [value]="veh"
+                (click)="onTypeSelected()"
+              >
+                {{ veh }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      <div class="col-md-2" *ngIf="smallForm.showSupplierSelect">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        
+      >
+        <mat-label>Supplier</mat-label>
+        <mat-select formControlName="suppliers" multiple>
+          <mat-option
+            [value]="'all_suppliers'"
+            #allSupplierSelected
+            (click)="onAllSupplierSelected()"
+            >All Suppliers</mat-option
+          >
+
+          <mat-option
+            *ngFor="let sup of smallForm.allowedSuppliers"
+            [value]="sup"
+            (click)="onSupplierSelected()"
+          >
+            {{ sup }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div><!-- components  -->
+      <div class="col-md-2" *ngIf="smallForm.showMaintenanceMaps">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        
+      >
+        <mat-label>Component</mat-label>
+
+        <mat-select formControlName="components" multiple>
+          <mat-option
+            [value]="'all_repair_maps'"
+            #allComponentsSelected
+            (click)="onAllComponentsSelected()"
+            >All Components</mat-option
+          >
+
+          <mat-option
+            *ngFor="let repair_map of smallForm.allowedRepairMaps"
+            [value]="repair_map"
+            (click)="onComponentsSelected()"
+          >
+            {{ repair_map }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+
+      <div class="col-md-1 mt-3" style="text-align: right" *ngIf="route.url !== '/home' && route.url !== '/' && route.url !== '/fleetlist' && route.url !== '/Fleetcard' && route.url !== '/repair-types' && route.url !== '/usage' && route.url !== '/expirations'">
+        <button
+          mat-button
+          style="border: 2px solid #36b6c3; border-radius: 50px; width: 8rem"
+          type="submit"
+          [disabled]="!smallForm.canSubmit"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="col-md-2 mt-3" style="text-align: right" *ngIf="route.url === '/' || route.url === '/home' || route.url === '/Fleetcard' || route.url === '/repair-types' || route.url === '/usage' || route.url === '/expirations'">
+        <button
+          mat-button
+          style="border: 2px solid #36b6c3; border-radius: 50px; width: 8rem"
+          type="submit"
+          [disabled]="!smallForm.canSubmit"
+        >
+          Submit
+        </button>
+      </div>
+      <div class="col-md-6 mt-3" style="text-align: right" *ngIf="route.url === '/fleetlist'">
+        <button
+          mat-button
+          class="sub-btn"
+          type="submit"
+          [disabled]="!smallForm.canSubmit"
+        >
+          Submit
+        </button>
+      </div>
+
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- ///////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////// -->
+<!-- *********************************************************************************************************************** -->
+<!-- ********************************************  EVENTS LAYOUT  ********************************************************* -->
+<!-- *********************************************************************************************************************** -->
+
+<mat-card
+  *ngIf="smallForm.formPage === 'events'"
+  class="small-form-mat-card-general-form-holder p-3"
+>
+  <mat-card-content>
+    <form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+
+      <div class="row">
+        <div class="col-md-2 column2" [style.display]="smallForm.showDateSelector ? 'block' : 'none'">
+          <mat-card-content
+        class="modified-mc-content"
+        style="width: 100%"
+        
+      >
+        <mat-expansion-panel
+          class="small-form-panel-expansion"
+          [(expanded)]="smallForm.isMonthRangePickerExpanded"
+        >
+          <mat-expansion-panel-header class="small-form-layout-panel-header">
+            <!-- <mat-panel-title > </mat-panel-title> -->
+
+            <mat-panel-description
+              style="
+                color: rgba(0, 0, 0, 0.87);
+                display: block;
+                margin-top: -0.6rem;
+              "
+            >
+              <div class="row" style="margin-bottom: -0.5rem !important">
+                <div class="col">
+                  <span class="small-form-layout">Selected Date Range</span>
+                </div>
+              </div>
+              <div class="row my-auto">
+                <div class="col">
+                  <span> {{ smallForm.dateRange }} </span>
+                </div>
+              </div>
+
+              <!-- <mat-icon>date_range</mat-icon> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-monthpicker
+            (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+            (rangeComplete)="smallForm.closeMonthPicker()"
+          ></app-monthpicker>
+        </mat-expansion-panel>
+      </mat-card-content>
+        </div>
+        <div class="col-md-2 column2">
+          <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+      >
+        <mat-label>Division</mat-label>
+        <mat-select formControlName="division" multiple>
+          <mat-option
+            [value]="'full_fleet'"
+            #AllDivisionSelected
+            (click)="onAllDivisionSelected()"
+            >Full Fleet</mat-option
+          >
+          <div
+            *ngIf="isLoading"
+            class="col d-flex align-items-center justify-content-center"
+            style="height: 0.5%; text-align: center"
+          >
+            <mat-spinner></mat-spinner>
+          </div>
+          <mat-option
+            *ngFor="let x of smallForm.allowedDivs"
+            [value]="x.division"
+            (click)="onDivisionSelected()"
+          >
+            {{ x.division }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        </div>
+        <div class="col-md-2 column2">
+          <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+      >
+        <mat-label>Branches</mat-label>
+        <mat-select formControlName="branch_single">
+          <mat-option
+            *ngFor="let branches of smallForm.allowedBranches"
+            [value]="branches.branch"
+          >
+            {{ branches.branch.branch }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        </div>
+        <div class="col-md-2 column2" *ngIf="showVehiclesTypes">
+          <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        
+      >
+        <mat-label>Vehicle Type</mat-label>
+        <mat-select formControlName="vehicleType" multiple>
+          <mat-option
+            [value]="'all_veh_types'"
+            #allTypesSelected
+            (click)="onAllTypesSelected()"
+            >All Types</mat-option
+          >
+          <mat-option
+            *ngFor="let veh of smallForm.allowedVehTypes"
+            [value]="veh"
+            (click)="onTypeSelected()"
+          >
+            {{ veh }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        </div>
+        <div class="col-md-2 column2" *ngIf="smallForm.showSupplierSelect">
+          <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        
+      >
+        <mat-label>Supplier</mat-label>
+        <mat-select formControlName="suppliers" multiple>
+          <mat-option
+            [value]="'all_suppliers'"
+            #allSupplierSelected
+            (click)="onAllSupplierSelected()"
+            >All Suppliers</mat-option
+          >
+
+          <mat-option
+            *ngFor="let sup of smallForm.allowedSuppliers"
+            [value]="sup"
+            (click)="onSupplierSelected()"
+          >
+            {{ sup }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        </div>
+        <div class="col-md-2 column2" *ngIf="smallForm.showMaintenanceMaps">
+          <!-- components  -->
+      <mat-form-field
+      appearance="fill"
+      style="width: 100%; margin-bottom: -0.7em"
+      
+    >
+      <mat-label>Component</mat-label>
+
+      <mat-select formControlName="components" multiple>
+        <mat-option
+          [value]="'all_repair_maps'"
+          #allComponentsSelected
+          (click)="onAllComponentsSelected()"
+          >All Components</mat-option
+        >
+
+        <mat-option
+          *ngFor="let repair_map of smallForm.allowedRepairMaps"
+          [value]="repair_map"
+          (click)="onComponentsSelected()"
+        >
+          {{ repair_map }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+        </div>
+        <div class="col-md-2 column2">
+
+      <!-- vehicle registration  -->
+      <mat-form-field
+      appearance="fill"
+      style="width: 100%; margin-bottom: -0.7em"
+    >
+      <mat-label>Asset</mat-label>
+      <mat-select formControlName="registrations" multiple>
+        <mat-option
+          [value]="'all_registrations'"
+          #allSelectedVehicleRegs
+          (click)="onAllVehicleRegsSelected()"
+          >All Assets</mat-option
+        >
+        <mat-option
+          *ngFor="let veh of smallForm.allowedVehicles"
+          [value]="veh"
+          (click)="onVehicleRegSelected()"
+        >
+          {{ veh.fleet_no }} ({{ veh.vehiclereg }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+        </div>
+        <div class="col-md-2 column2" style="text-align: right">
+          <button
+            mat-button
+            style="border: 2px solid #36b6c3; border-radius: 50px; width: 8rem"
+            type="submit"
+            [disabled]="!smallForm.canSubmit"
+            class="mt-3"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- *********************************************************************************************************************** -->
+<!-- ********************************************* LAYOUT FOR ORDERS PAGE ************************************************** -->
+<!-- *********************************************************************************************************************** -->
+
+<div *ngIf="smallForm.formPage === 'orders'">
+  <mat-card class="small-form-card-orders-form-holder p-4">
+    <mat-card-content class="p-0">
+      <form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+        <div class="row">
+            <div class="col-md-3">
+              <mat-card-content
+                class="modified-mc-content p-0"
+                style="width: 98%;"
+                [style.display]="smallForm.showDateSelector ? 'block' : 'none'"
+              >
+                <mat-expansion-panel
+                  class="small-form-panel-expansion pt-0"
+                  [(expanded)]="smallForm.isMonthRangePickerExpanded"
+                >
+                  <mat-expansion-panel-header
+                    class="small-form-layout-panel-header"
+                  >
+                    <!-- <mat-panel-title > </mat-panel-title> -->
+
+                    <mat-panel-description
+                      style="
+                        color: rgba(0, 0, 0, 0.87);
+                        display: block;
+                        margin-top: -0.6rem;
+                      "
+                    >
+                      <div
+                        class="row"
+                        style="margin-bottom: -0.5rem !important"
+                      >
+                        <div class="col">
+                          <span class="small-form-layout"
+                            >Selected Date Range</span
+                          >
+                        </div>
+                      </div>
+                      <div class="row my-auto">
+                        <div class="col">
+                          <span> {{ smallForm.dateRange }} </span>
+                        </div>
+                      </div>
+
+                      <!-- <mat-icon>date_range</mat-icon> -->
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <app-monthpicker
+                    (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+                    (rangeComplete)="smallForm.closeMonthPicker()"
+                  ></app-monthpicker>
+                </mat-expansion-panel>
+              </mat-card-content>
+            </div>
+
+            <div class="col-md-3 mx-auto my-auto">
+              <mat-form-field
+                appearance="fill"
+                style="width: 100%; margin-bottom: -0.7em"
+              >
+                <mat-label>Division</mat-label>
+                <mat-select formControlName="division" multiple>
+                  <mat-option
+                    [value]="'full_fleet'"
+                    #AllDivisionSelected
+                    (click)="onAllDivisionSelected()"
+                    >Full Fleet</mat-option
+                  >
+                  <div
+                    *ngIf="isLoading"
+                    class="col d-flex align-items-center justify-content-center"
+                    style="height: 0.5%; text-align: center"
+                  >
+                    <mat-spinner></mat-spinner>
+                  </div>
+                  <mat-option
+                    *ngFor="let x of smallForm.allowedDivs"
+                    [value]="x.division"
+                    (click)="onDivisionSelected()"
+                  >
+                    {{ x.division }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mx-auto my-auto">
+              <mat-form-field
+                appearance="fill"
+                style="width: 100%; margin-bottom: -0.7em"
+              >
+                <mat-label>Branches</mat-label>
+                <mat-select formControlName="branch_single">
+                  <mat-option
+                    *ngFor="let branches of smallForm.allowedBranches"
+                    [value]="branches.branch"
+                  >
+                    {{ branches.branch.branch }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mx-auto my-auto text-center">
+              <button
+                mat-button
+                class="sub-btn"
+                type="submit"
+                [disabled]="!smallForm.canSubmit"
+              >
+                Submit
+              </button>
+            </div>
+          <div class="row mx-auto my-auto pt-3">
+            <div class="col mx-auto">
+              <div class="row mx-auto">
+                <div
+                  class="col-md-2 mx-auto my-auto text-center mb-2"
+                  type="button"
+                >
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.ordersButtonClicked('delete')"
+                    [disabled]="
+                      !smallForm.isOrderDeleteButtonEnabled ||
+                      !smallForm.userCanDeleteOrders
+                    "
+                  >
+                    <span
+                      [style.display]="
+                        smallForm.isMonthRangePickerExpanded
+                          ? 'none'
+                          : 'inline-block'
+                      "
+                    >
+                      Delete Order
+                    </span>
+                  </button>
+                </div>
+                <div class="col-md-2 mx-auto my-auto text-center mb-2">
+                  <button
+                    mat-button
+                    class="small_form_button me-auto"
+                    type="button"
+                    type="button"
+                    (click)="smallForm.ordersButtonClicked('create')"
+                    [disabled]="
+                      !smallForm.isOrderAddButtonEnabled ||
+                      !smallForm.userCanAddOrders
+                    "
+                  >
+                    New Order
+                  </button>
+                </div>
+
+                <div class="col-md-2 mx-auto my-auto text-center mb-2">
+
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.ordersButtonClicked('edit')"
+                    [disabled]="
+                      !smallForm.isOrderEditButtonEnabled ||
+                      !smallForm.userCanEditOrders
+                    "
+                  >
+                    Edit Order
+                  </button>
+                </div>
+                <div class="col-md-2 mx-auto my-auto text-center mb-2">
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.ordersButtonClicked('view_asset')"
+                    [disabled]="!smallForm.isOrderViewAssetButtonEnabled"
+                  >
+                    View Asset
+                  </button>
+                </div>
+                <div class="col-md-2 mx-auto my-auto text-center mb-2">
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.ordersButtonClicked('viewInvoices')"
+                    [disabled]="!smallForm.isOrderViewInvoiceButtonEnabled"
+                  >
+                    View Invoices
+                  </button>
+                </div>
+
+                <div class="col-md-2 mx-auto text-center mb-2">
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.ordersButtonClicked('download')"
+                    [disabled]="!smallForm.isOrderDownloadButtonEnabled"
+                  >
+                    Download
+                  </button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- *********************************************************************************************************************** -->
+<!-- ********************************************  LAYOUT FOR REPORTS PAGE  ************************************************ -->
+<!-- *********************************************************************************************************************** -->
+
+<div *ngIf="smallForm.formPage === 'reports'">
+  <mat-card
+    class="small-form-mat-card-general-form-holder graphs mx-auto p-3 ml-0 mr-0"
+  >
+    <mat-card-content class="p-2 pt-0">
+      <form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+          <div class="row">
+            <div class="col-md-4">
+                    <mat-card-content
+                      class="modified-mc-content"
+                      style="width: 100%"
+                    >
+                      <mat-expansion-panel
+                        class="small-form-panel"
+                        [(expanded)]="smallForm.isMonthRangePickerExpanded"
+                      >
+                        <mat-expansion-panel-header
+                          class="small-form-panel-header"
+                        >
+                          <!-- <mat-panel-title > </mat-panel-title> -->
+
+                          <mat-panel-description
+                            style="
+                              color: rgba(0, 0, 0, 0.87);
+                              display: block;
+                              margin-top: -0.6rem;
+                            "
+                          >
+                            <div
+                              class="row"
+                              style="margin-bottom: -0.5rem !important"
+                            >
+                              <div class="col">
+                                <span class="small-form-panel-description"
+                                  >Selected Date Range</span
+                                >
+                              </div>
+                            </div>
+                            <div class="row my-auto">
+                              <div class="col">
+                                <span> {{ smallForm.dateRange }} </span>
+                              </div>
+                            </div>
+
+                            <!-- <mat-icon>date_range</mat-icon> -->
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <app-monthpicker
+                          (monthRangeSelected)="
+                            smallForm.dateSelectorRange($event)
+                          "
+                          (rangeComplete)="smallForm.closeMonthPicker()"
+                        ></app-monthpicker>
+                      </mat-expansion-panel>
+                    </mat-card-content>
+            </div>
+            <div class="col-md-4 p-0">
+              <div class="row">
+                <mat-form-field appearance="fill" style="width: 100%; height: 78px;" id="test">
+                  <mat-label>Report Type</mat-label>
+                  <mat-select formControlName="reportType">
+                    <mat-option
+                      *ngFor="let type of smallForm.reportTypes"
+                      [value]="type.reportTitle"
+                    >
+                      {{ type.reportTitle }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="col-md-4 mx-auto my-auto text-center">
+              <button
+                mat-button
+                class="sub-btn"
+                [disabled]="!smallForm.canSubmit"
+                type="button"
+                (click)="smallForm.onDownloadReport()"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h3 class="selected-report-header">
+                {{ smallForm.selectedReportType?.reportDescription }}
+              </h3>
+            </div>
+          </div>
+          <div></div>
+        <div class="row mx-auto my-auto">
+          <div class="col-md-3 mx-auto my-auto list-row mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Divisions</span>
+            </div>
+            <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="division"
+            >
+              <option [value]="'full_fleet'">Full Fleet</option>
+
+              <option
+                *ngFor="let x of smallForm.allowedDivs"
+                [value]="x.division"
+              >
+                {{ x.division }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mx-auto my-auto mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Branches</span>
+            </div>
+            <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="branch"
+            >
+              <option [value]="'all_branches'">All Branches</option>
+
+              <option
+                *ngFor="let branches of smallForm.allowedBranches"
+                [value]="branches.branch"
+              >
+                {{ branches.branch.branch }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mx-auto my-auto mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Types</span>
+            </div>
+            <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="vehicleType"
+            >
+              <option [value]="'all_veh_types'">All Types</option>
+
+              <option
+                *ngFor="let veh of smallForm.allowedVehTypes"
+                [value]="veh"
+              >
+                {{ veh }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mx-auto my-auto mb-3">
+            <div class="row my-auto">
+              <span class="form-select-header">Make/Models</span>
+            </div>
+            <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="models"
+            >
+              <option [value]="'all_models'">All Models</option>
+
+              <option
+                *ngFor="let veh of smallForm.allowedModelTypes"
+                [value]="veh.veh_model_map"
+              >
+                {{ veh.veh_model_map }}
+              </option>
+            </select>
+          </div>
+        <!-- </div> -->
+        <!-- <div class="row my-auto mt-4"> -->
+          <div
+            class="col-md-3 mx-auto my-auto btm-row assets mt-3"
+            *ngIf="smallForm.showVehicleSelect"
+          >
+            <div class="row my-auto">
+              <span class="form-select-header">Assets</span>
+            </div>
+            <select
+              name="division"
+              id="division"
+              multiple
+              formControlName="registrations"
+            >
+              <option [value]="'all_registrations'">All Assets</option>
+              <option
+                *ngFor="let veh of smallForm.allowedVehicles"
+                [value]="veh"
+              >
+                {{ veh.fleet_no + " (" + veh.vehiclereg + ")" }}
+              </option>
+            </select>
+          </div>
+          <div
+            class="col-md-12 supplier mx-auto my-auto btm-row"
+            class="col-md-3 supplier mx-auto my-auto btm-row mt-3"
+            *ngIf="smallForm.showSupplierSelect"
+          >
+            <div class="row my-auto">
+              <span class="form-select-header">Suppliers</span>
+            </div>
+            <select multiple formControlName="suppliers">
+              <option [value]="'all_suppliers'">All Suppliers</option>
+
+              <option
+                *ngFor="let sup of smallForm.allowedSuppliers"
+                [value]="sup"
+              >
+                {{ sup }}
+              </option>
+            </select>
+          </div>
+          <div
+            class="col-md-3 my-auto btm-row mt-3"
+            *ngIf="smallForm.showComponentSelect"
+          >
+            <div class="row my-auto">
+              <span class="form-select-header">Components</span>
+            </div>
+            <select multiple formControlName="components">
+              <option [value]="'all_repair_maps'">All Components</option>
+
+              <option
+                *ngFor="let map of smallForm.allowedRepairMaps"
+                [value]="map"
+              >
+                {{ map }}
+              </option>
+            </select>
+          </div>
+          <div class="col-3 mx-auto my-auto"></div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <br />
+  <br />
+  <br />
+</div>
+
+<!-- *********************************************************************************************************************** -->
+<!-- ********************************************  LAYOUT FOR PER ASSET VIEW *********************************************** -->
+<!-- *********************************************************************************************************************** -->
+
+<mat-card
+  *ngIf="smallForm.formPage === 'pav'"
+  class="small-form-mat-card-general-form-holder p-3"
+>
+  <mat-card-content>
+    <form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+
+
+      <div class="row">
+        <div class="col-md-4">
+  
+          <mat-card-content
+        class="modified-mc-content"
+        style="width: 100%"
+        [style.display]="smallForm.showDateSelector ? 'block' : 'none'"
+      >
+        <mat-expansion-panel
+          class="small-form-panel-expansion"
+          [(expanded)]="smallForm.isMonthRangePickerExpanded"
+        >
+          <mat-expansion-panel-header class="small-form-layout-panel-header">
+            <!-- <mat-panel-title > </mat-panel-title> -->
+
+            <mat-panel-description
+              style="
+                color: rgba(0, 0, 0, 0.87);
+                display: block;
+                margin-top: -0.6rem;
+              "
+            >
+              <div class="row" style="margin-bottom: -0.5rem !important">
+                <div class="col">
+                  <span class="small-form-layout">Selected Date Range</span>
+                </div>
+              </div>
+              <div class="row my-auto">
+                <div class="col">
+                  <span> {{ smallForm.dateRange }} </span>
+                </div>
+              </div>
+
+              <!-- <mat-icon>date_range</mat-icon> -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-monthpicker
+            (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+            (rangeComplete)="smallForm.closeMonthPicker()"
+          ></app-monthpicker>
+        </mat-expansion-panel>
+      </mat-card-content>
+        </div>
+
+      <div class="col-md-4">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        *ngIf="smallForm.showSupplierSelect"
+      >
+        <mat-label>Supplier</mat-label>
+        <mat-select formControlName="suppliers" multiple>
+          <mat-option
+            [value]="'all_suppliers'"
+            #allSupplierSelected
+            (click)="onAllSupplierSelected()"
+            >All Suppliers</mat-option
+          >
+
+          <mat-option
+            *ngFor="let sup of smallForm.allowedSuppliers"
+            [value]="sup"
+            (click)="onSupplierSelected()"
+          >
+            {{ sup }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+      <div class="col-md-4">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        *ngIf="smallForm.showMaintenanceMaps"
+      >
+        <mat-label>Component</mat-label>
+
+        <mat-select formControlName="components" multiple>
+          <mat-option
+            [value]="'all_repair_maps'"
+            #allComponentsSelected
+            (click)="onAllComponentsSelected()"
+            >All Components</mat-option
+          >
+
+          <mat-option
+            *ngFor="let repair_map of smallForm.allowedRepairMaps"
+            [value]="repair_map"
+            (click)="onComponentsSelected()"
+          >
+            {{ repair_map }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+      <h2 class="form-select-header" style="margin-bottom: -0.5rem !important">
+        Asset Lookup
+      </h2>
+
+      <div class="col-md-2">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+      >
+        <mat-label>Division</mat-label>
+        <mat-select formControlName="division" multiple>
+          <mat-option
+            [value]="'full_fleet'"
+            #AllDivisionSelected
+            (click)="onAllDivisionSelected()"
+            >Full Fleet</mat-option
+          >
+          <div
+            *ngIf="isLoading"
+            class="col d-flex align-items-center justify-content-center"
+            style="height: 0.5%; text-align: center"
+          >
+            <mat-spinner></mat-spinner>
+          </div>
+          <mat-option
+            *ngFor="let x of smallForm.allowedDivs"
+            [value]="x.division"
+            (click)="onDivisionSelected()"
+          >
+            {{ x.division }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+      <div class="col-md-2">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+      >
+        <mat-label>Branches</mat-label>
+        <mat-select formControlName="branch" multiple>
+          <mat-option
+            [value]="'all_branches'"
+            #AllBranchSelected
+            (click)="onAllBranchSelected()"
+            >All Branches</mat-option
+          >
+
+          <mat-option
+            *ngFor="let branches of smallForm.allowedBranches"
+            [value]="branches.branch"
+            (click)="onBranchSelected()"
+          >
+            {{ branches.branch.branch }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+      
+      <div class="col-md-2">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+        *ngIf="showVehiclesTypes"
+      >
+        <mat-label>Vehicle Type</mat-label>
+        <mat-select formControlName="vehicleType" multiple>
+          <mat-option
+            [value]="'all_veh_types'"
+            #allTypesSelected
+            (click)="onAllTypesSelected()"
+            >All Types</mat-option
+          >
+          <mat-option
+            *ngFor="let veh of smallForm.allowedVehTypes"
+            [value]="veh"
+            (click)="onTypeSelected()"
+          >
+            {{ veh }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+      <div class="col-md-2">
+        <mat-form-field
+        appearance="fill"
+        style="width: 100%; margin-bottom: -0.7em"
+      >
+        <mat-label>Asset</mat-label>
+        <input
+          matInput
+          formControlName="pavRegs"
+          [matAutocomplete]="autoAllRegs"
+          (click)="smallForm.clearSingleReg($event)"
+          (input)="smallForm.filteredPavRegsDD($event)"
+        />
+        <mat-autocomplete
+          #autoAllRegs="matAutocomplete"
+          (optionSelected)="smallForm.selectedPavRegsDD($event)"
+        >
+          <mat-option
+            *ngFor="let veh of smallForm.filteredPavRegs"
+            [value]="veh"
+          >
+            {{ veh.fleet_no + " (" + veh.vehiclereg + ")" }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      </div>
+
+      <div class="col mt-3" style="text-align: right">
+        <button
+          mat-button
+          style="border: 2px solid #36b6c3; border-radius: 50px; width: 8rem"
+          type="submit"
+          [disabled]="!smallForm.canSubmit"
+        >
+          Submit
+        </button>
+      </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- *********************************************************************************************************************** -->
+<!-- ********************************************* DOWNTIME PAGE ************************************************** -->
+<!-- *********************************************************************************************************************** -->
+
+<div *ngIf="smallForm.formPage === 'downtime'">
+  <mat-card class="small-form-card-orders-form-holder p-4 mt-2">
+    <mat-card-content class="p-0">
+      <form [formGroup]="smallForm.form" (ngSubmit)="smallForm.onSubmit()">
+        <div class="row mx-auto my-auto">
+          <div class="row">
+          </div>
+          <div class="row mx-auto p-0">
+            <div class="col-md-3 mx-auto p-2 pt-0">
+              <mat-card-content
+                class="modified-mc-content"
+                style="width: 98%"
+                [style.display]="smallForm.showDateSelector ? 'block' : 'none'"
+              >
+                <mat-expansion-panel
+                  class="small-form-panel-expansion"
+                  [(expanded)]="smallForm.isMonthRangePickerExpanded"
+                >
+                  <mat-expansion-panel-header
+                    class="small-form-layout-panel-header"
+                  >
+                    <!-- <mat-panel-title > </mat-panel-title> -->
+
+                    <mat-panel-description
+                      style="
+                        color: rgba(0, 0, 0, 0.87);
+                        display: block;
+                        margin-top: -0.6rem;
+                      "
+                    >
+                      <div
+                        class="row"
+                        style="margin-bottom: -0.5rem !important;"
+                      >
+                        <div class="col">
+                          <span class="small-form-layout"
+                            >Selected Date Range</span
+                          >
+                        </div>
+                      </div>
+                      <div class="row my-auto">
+                        <div class="col">
+                          <span> {{ smallForm.dateRange }} </span>
+                        </div>
+                      </div>
+
+                      <!-- <mat-icon>date_range</mat-icon> -->
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <app-monthpicker
+                    (monthRangeSelected)="smallForm.dateSelectorRange($event)"
+                    (rangeComplete)="smallForm.closeMonthPicker()"
+                  ></app-monthpicker>
+                </mat-expansion-panel>
+              </mat-card-content>
+            </div>
+            <div class="col-md-3 mx-auto">
+              <mat-form-field
+                appearance="fill"
+                style="width: 100%; margin-bottom: -0.7em"
+              >
+                <mat-label>Division</mat-label>
+                <mat-select formControlName="division" multiple>
+                  <mat-option
+                    [value]="'full_fleet'"
+                    #AllDivisionSelected
+                    (click)="onAllDivisionSelected()"
+                    >Full Fleet</mat-option
+                  >
+                  <div
+                    *ngIf="isLoading"
+                    class="col d-flex align-items-center justify-content-center"
+                    style="height: 0.5%; text-align: center"
+                  >
+                    <mat-spinner></mat-spinner>
+                  </div>
+                  <mat-option
+                    *ngFor="let x of smallForm.allowedDivs"
+                    [value]="x.division"
+                    (click)="onDivisionSelected()"
+                  >
+                    {{ x.division }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mx-auto">
+              <mat-form-field
+                appearance="fill"
+                style="width: 100%; margin-bottom: -0.7em"
+              >
+                <mat-label>Branches</mat-label>
+                <mat-select formControlName="branch_single">
+                  <mat-option
+                    *ngFor="let branches of smallForm.allowedBranches"
+                    [value]="branches.branch"
+                  >
+                    {{ branches.branch.branch }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-3 mx-auto my-auto text-center">
+              <button
+                mat-button
+                class="sub-btn"
+                type="submit"
+                [disabled]="!smallForm.canSubmit"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="row mx-auto my-auto pt-3">
+            <div class="col mx-auto">
+              <div class="row mx-auto">
+                <div class="col mx-auto my-auto p-2" style="text-align: center">
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.onDtClick('add')"
+                  >
+                    <span
+                      [style.display]="
+                        smallForm.isMonthRangePickerExpanded
+                          ? 'none'
+                          : 'inline-block'
+                      "
+                    >
+                      Book Vehicle
+                    </span>
+                  </button>
+                </div>
+                <div class="col mx-auto my-auto p-2" style="text-align: center">
+                  <button
+                    mat-button
+                    class="small_form_button me-auto"
+                    type="button"
+                    type="button"
+                    (click)="smallForm.onDtClick('complete')"
+                    [disabled]="!smallForm.dtSelectButtonsEnabled"
+                  >
+                    Return Vehicle
+                  </button>
+                </div>
+
+                <div class="col mx-auto my-auto p-2" style="text-align: center">
+                  <button
+                    mat-button
+                    class="small_form_button"
+                    type="button"
+                    (click)="smallForm.onDtClick('edit')"
+                    [disabled]="!smallForm.dtSelectButtonsEnabled"
+                  >
+                    Edit Entry
+                  </button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

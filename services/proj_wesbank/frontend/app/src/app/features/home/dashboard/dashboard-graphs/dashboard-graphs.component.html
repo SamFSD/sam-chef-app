@@ -1,0 +1,71 @@
+<div class="row mx-auto" style="width: 98%; margin-top: 30px !important;">
+  <div class="col mx-auto">
+    <mat-slide-toggle (change)="onSlideToggleChange($event)" checked="false">
+      <span>
+        <span [ngStyle]="{ color: isFYTD ? '' : 'grey' }"
+          >Financial Year To Date</span>
+        |
+        <span [ngStyle]="{ color: isFYTD ? 'grey' : '' }"
+          >Current Selection</span>
+      </span>
+    </mat-slide-toggle>
+  </div>
+</div>
+<div class="row mx-auto" style="width: 98%">
+  <div class="col-md-3 mb-2">
+    <div class="row">
+      <app-graph-skeleton
+        *ngIf="isCSMGraphLoading"
+        class="skeleton"
+      ></app-graph-skeleton>
+      <div
+        echarts
+        [options]="costGraph"
+        *ngIf="!isCSMGraphLoading"
+        [ngStyle]="{ display: isCSMGraphLoading ? 'none' : 'block' }"
+      ></div>
+    </div>
+  </div>
+  <div class="col-md-3 mb-2">
+    <div class="row">
+      <app-graph-skeleton
+        *ngIf="isCSMGraphLoading"
+        class="skeleton"
+      ></app-graph-skeleton>
+      <div
+        [ngStyle]="{ display: isCSMGraphLoading ? 'none' : 'block' }"
+        echarts
+        [options]="savingsGraph"
+        *ngIf="!isCSMGraphLoading"
+      ></div>
+    </div>
+  </div>
+  <div class="col-md-3 mb-2">
+    <div class="row">
+      <app-graph-skeleton
+        *ngIf="isCSMGraphLoading"
+        class="skeleton"
+      ></app-graph-skeleton>
+      <div
+        [ngStyle]="{ display: isCSMGraphLoading ? 'none' : 'block' }"
+        echarts
+        [options]="mileageGraph"
+        *ngIf="!isCSMGraphLoading"
+      ></div>
+    </div>
+  </div>
+  <div class="col-md-3 mb-2">
+    <div class="row">
+      <app-graph-skeleton
+        *ngIf="isFuelCardGraphLoading"
+        class="skeleton"
+      ></app-graph-skeleton>
+      <div
+        [ngStyle]="{ display: isFuelCardGraphLoading ? 'none' : 'block' }"
+        echarts
+        [options]="fuelCardGraph"
+        *ngIf="!isFuelCardGraphLoading"
+      ></div>
+    </div>
+  </div>
+</div>

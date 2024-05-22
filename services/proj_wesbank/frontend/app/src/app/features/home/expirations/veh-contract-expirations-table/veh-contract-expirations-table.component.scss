@@ -1,0 +1,29 @@
+::ng-deep [tabulator-field="progress"] > div {
+  background-color: #007582 !important;
+}
+::ng-deep
+  .tabulator
+  .tabulator-header
+  .tabulator-col.tabulator-sortable
+  .tabulator-col-title {
+  padding-right: 25px;
+  background-color: #69d2dc !important;
+  border-color: #69d2dc;
+}
+::ng-deep .tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+  padding: 0px;
+  background-color: #69d2dc;
+}
+
+.table {
+  height: 650px !important;
+}
+
+::ng-deep .tabulator .tabulator-header .tabulator-header-contents .tabulator-headers {
+  display: inline-block;
+  padding: 0px !important;
+}
+
+:host ::ng-deep .skeleton {
+  height: 650px !important;
+}

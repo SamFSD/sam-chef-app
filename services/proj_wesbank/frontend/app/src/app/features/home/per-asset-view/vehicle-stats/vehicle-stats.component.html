@@ -1,0 +1,171 @@
+<div class="row my-auto">
+  <div class="col mx-auto">
+    <!-- <mat-card style="
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        height: 100%;"><mat-card-content> -->
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h2 class="top-row-header">Vehicle Stats</h2>
+                <div class="row">
+                  <app-skeleton *ngIf="isLoading === true"></app-skeleton>
+                  <div *ngIf="isLoading === false">
+                    <div class="col">
+                      <div class="row">
+                        <div class="col">Fleet Number</div>
+                        <div class="col">{{ fleetNo }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">Registration</div>
+                        <div class="col">{{ vehiclereg }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">Make</div>
+                        <div class="col">{{ make }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">Model</div>
+                        <div class="col">{{ model }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">Type</div>
+                        <div class="col">{{ type }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">Branch</div>
+                        <div class="col">{{ branch }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">Contract Duration</div>
+                        <div class="col">{{ contractDur }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                      <div class="row">
+                        <div class="col">License Expiration</div>
+                        <div class="col">{{ licenseExp }}</div>
+                      </div>
+                      <hr class="top-row-divider" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </mat-card-content>
+    </mat-card> -->
+  </div>
+  <div class="col mx-auto">
+    <!-- <mat-card style="
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        height: 100%;
+      "><mat-card-content> -->
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                <h2 class="top-row-header">Order Breakdown</h2>
+                <div class="row mx-sm-auto">
+                  <div class="col mx-auto"></div>
+                </div>
+                <div class="row mx-auto">
+                  <app-skeleton  *ngIf="isLoading === true"></app-skeleton>
+                </div>
+                <div class="row-mx-auto" *ngIf="isLoading === false">
+                  <!-- Completed -->
+                  <div class="row mx-auto">
+                    <div class="col mx-auto">
+                      <div class="row mx-auto">
+                        <div class="col-1 mx-auto my-auto d-flex justify-content-end align-items-center"
+                          style="text-align: right">
+                          <mat-icon fontSet="fa" fontIcon="fa-circle"
+                            class="d-flex justify-content-end align-items-center" style="color: #69d2dc"></mat-icon>
+                        </div>
+                        <div class="col mx-auto my-auto" style="text-align: left">
+                          <h4 style="display: inline">Completed</h4>
+                        </div>
+                        <div class="col mx-auto">
+                          <span>{{ completed }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="top-row-divider" />
+
+                  <!-- Accruals -->
+                  <div class="row mx-auto">
+                    <div class="col mx-auto">
+                      <div class="row mx-auto">
+                        <div class="col-1 mx-auto my-auto d-flex justify-content-end align-items-center"
+                          style="text-align: right">
+                          <mat-icon fontSet="fa" fontIcon="fa-circle"
+                            class="d-flex justify-content-end align-items-center" style="color: #39a750"></mat-icon>
+                        </div>
+                        <div class="col mx-auto my-auto" style="text-align: left">
+                          <h4 style="display: inline">Accruals</h4>
+                        </div>
+                        <div class="col mx-auto">
+                          <span>{{ accrual }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="top-row-divider" />
+
+                  <!-- Order Exceptions -->
+                  <div class="row mx-auto">
+                    <div class="col mx-auto">
+                      <div class="row mx-auto">
+                        <div class="col-1 mx-auto my-auto d-flex justify-content-end align-items-center"
+                          style="text-align: right">
+                          <mat-icon fontSet="fa" fontIcon="fa-circle"
+                            class="d-flex justify-content-end align-items-center" style="color: #e79920"></mat-icon>
+                        </div>
+                        <div class="col mx-auto my-auto" style="text-align: left">
+                          <h4 style="display: inline">Order Exceptions</h4>
+                        </div>
+                        <div class="col mx-auto">
+                          <span>{{ orderException }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="top-row-divider" />
+
+                  <!-- Invoice Exceptions -->
+                  <div class="row mx-auto">
+                    <div class="col mx-auto">
+                      <div class="row mx-auto">
+                        <div class="col-1 mx-auto my-auto d-flex justify-content-end align-items-center"
+                          style="text-align: right">
+                          <mat-icon fontSet="fa" fontIcon="fa-circle"
+                            class="d-flex justify-content-end align-items-center" style="color: #d03827"></mat-icon>
+                        </div>
+                        <div class="col mx-auto my-auto" style="text-align: left">
+                          <h4 style="display: inline">Invoice Exceptions</h4>
+                        </div>
+                        <div class="col mx-auto">
+                          <span>{{ invoiceException }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="top-row-divider" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- </mat-card-content>
+    </mat-card> -->
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="row mx-auto">
+  <div class="col mx-auto my-auto">
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-2"
+    >
+      <mat-card-content>
+        <app-skeleton
+          *ngIf="!repairTypesTopRowData"
+          class="small-form-mat-card-general-form-holder graphs mx-auto"
+        ></app-skeleton>
+        <app-repair-type-top
+          [repairTypesTopRowData]="repairTypesTopRowData"
+        ></app-repair-type-top>
+        <h1
+          class="text-center"
+          style="color: #15a3b3"
+          *ngIf="repairTypesTopRowData.repair_type_top.length === 0"
+        >
+          No Data For Current Selection
+        </h1>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<div class="row mx-auto mt-4">
+  <div class="col mx-auto my-auto">
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-2"
+    >
+      <mat-card-title class="top-row-header"
+        >Spend Per Supplier Per Category</mat-card-title
+      >
+      <mat-card-content class="mt-3">
+        <app-total-spend-per-sup-per-cat
+          [spendPerSupplier]="spendPerSupplier"
+        ></app-total-spend-per-sup-per-cat> </mat-card-content
+    ></mat-card>
+  </div>
+</div>
+<div class="row mx-auto mt-4">
+  <div class="col mx-auto my-auto">
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-2"
+    >
+      <mat-card-title class="top-row-header"
+        >CPK Per Model And Vehicle Type</mat-card-title
+      ><mat-card-content>
+        <app-cpk-per-model-and-veh-type
+          [cpkPerModel]="cpkPerModel"
+        ></app-cpk-per-model-and-veh-type> </mat-card-content
+    ></mat-card>
+  </div>
+</div>
+
+<div class="row mx-auto btm-row mt-4">
+  <div class="col mx-auto my-auto">
+    <mat-card
+      *ngIf="repairTypeAndCounts"
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-4"
+    >
+      <mat-card-content>
+        <!-- <app-skeleton
+          *ngIf="!repairTypeAndCounts"
+          class="small-form-mat-card-general-form-holder graphs mx-auto p-3 mb-3"
+        ></app-skeleton> -->
+        <app-graph-spend-per-car-per-month
+          [repairTypeAndCounts]="repairTypeAndCounts"
+        ></app-graph-spend-per-car-per-month> </mat-card-content
+    ></mat-card>
+  </div>
+</div>

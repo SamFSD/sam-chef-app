@@ -1,0 +1,499 @@
+<div class="row">
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_cpk }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_cpk }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">CPK</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_cpk_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_cpk_branch"
+              >
+                {{ totalObj.percentage_avg_cpk_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_cpk)
+                }"
+                [style.width.%]="totalObj.percentage_avg_cpk"
+              >
+                {{ totalObj.percentage_avg_cpk }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">Costs</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">Distance</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">Maint Plan Usage</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">Idling</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">Speeding</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">After Hours Usage</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3 my-auto" style="text-align: center">
+    <div class="row my-auto" style="height: 6rem">
+      <div class="col-4 my-auto">
+        <div class="row my-auto" style="height: 70%">
+          <div class="col my-auto">
+            <span
+              class="position-lg"
+              style="font-size: 2.5rem; font-weight: bold"
+              >{{ totalObj.ranking_branch_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_branch }}</span>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col" style="text-align: center">
+            <span
+              class="position-lg"
+              style="font-size: 1rem; font-weight: bold"
+              >{{ totalObj.ranking_fleet_costs }}</span
+            ><span>/ {{ totalObj.max_ranking_fleet }} </span>
+          </div>
+        </div>
+      </div>
+      <div class="col my-auto">
+        <div class="row"><div class="col">Avg Trip Distance</div></div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(
+                    totalObj.percentage_avg_costs_branch
+                  )
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs_branch"
+              >
+                {{ totalObj.percentage_avg_costs_branch }} %
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row">
+          <div class="col">
+            <div class="progress-bar">
+              <div
+                class="progress-bar-fill"
+                [ngStyle]="{
+                  'background-color': getColor(totalObj.percentage_avg_costs)
+                }"
+                [style.width.%]="totalObj.percentage_avg_costs"
+              >
+                {{ totalObj.percentage_avg_costs }} %
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

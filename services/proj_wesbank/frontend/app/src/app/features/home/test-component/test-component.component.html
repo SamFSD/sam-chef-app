@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-content class="p-0">
+    <div class="p-1">
+      <mat-checkbox
+        [(ngModel)]="fullFleetChecked"
+        [checked]="'fullFleetChecked'"
+        (change)="onFullFleetChange($event)"
+        >Full Fleet</mat-checkbox
+      >
+    </div>
+    <div class="input" *ngFor="let div of smallForm.allowedDivs">
+      <div class="p-1">
+        <input
+          type="checkbox"
+          class="checkbox p-2"
+          [checked]="divChecked[div.division]"
+          (change)="onDivisionChange(div.division, $event)"
+        />&nbsp;{{ div.division }}
+      </div>
+    </div>
+
+    <!-- //// branched field  -->
+    <div class="branches">
+      <div class="p-1">
+        <mat-checkbox
+          [(ngModel)]="fullFleetChecked"
+          (change)="onFullFleetChange($event)"
+          >All Branches</mat-checkbox
+        >
+      </div>
+      <div *ngFor="let branch of allowedBranches">
+        {{ branch.name }}
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

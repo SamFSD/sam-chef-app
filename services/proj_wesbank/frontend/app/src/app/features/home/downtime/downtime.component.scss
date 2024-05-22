@@ -1,0 +1,34 @@
+.mat-card {
+    height: 400px;
+    margin: 20px;
+    overflow: auto;
+    width: auto;
+}
+  
+.ag-theme-alpine {
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
+    border-radius: 20px !important;
+}
+
+::ng-deep .ag-root-wrapper {
+    border: var(--ag-borders) var(--ag-border-color);
+    border-radius: 0.75rem !important;
+}
+
+.row {
+    width: 96.5%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    background-color: white;
+    border-radius: 0.75rem !important;
+    margin-left: 26px;
+}
+
+.col-12 {
+    padding: 0 !important;
+}
+
+.btn-row {
+    width: 96.5%;
+}

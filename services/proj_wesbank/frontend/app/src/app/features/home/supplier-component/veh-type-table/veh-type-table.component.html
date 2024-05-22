@@ -1,0 +1,31 @@
+<div class="row mx-auto header-row">
+  <app-skeleton *ngIf="isLoading" class="skeleton"></app-skeleton>
+  <div *ngIf="!isLoading" class="row mx-auto header-row">
+    <div class="col header-col">
+      <h2 class="top-row-header">Transactions by Vehicle Type</h2>
+    </div>
+    <div class="col mx-auto my-auto d-flex justify-content-end">
+      <mat-icon
+        (click)="downloadCsv()"
+        class="material-icons my-auto"
+        style="color: #69d2dc"
+        >cloud_download</mat-icon
+      >
+    </div>
+  </div>
+  <br />
+  <br />
+
+  <div
+    [ngStyle]="{
+      display: isLoading ? 'none' : 'block',
+      height: isLoading ? '0' : '650px'
+    }"
+    style="
+      height: 650px;
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    "
+    id="vehtable"
+  ></div>
+</div>

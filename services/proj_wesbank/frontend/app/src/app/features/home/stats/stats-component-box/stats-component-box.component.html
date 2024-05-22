@@ -1,0 +1,17 @@
+<div class="row mx-auto btm-row">
+  <div class="col">
+    <mat-card
+      class="small-form-mat-card-general-form-holder graphs mx-auto p-4"
+    >
+      <h2 class="top-row-header">Expenditure by Component</h2>
+      <app-skeleton *ngIf="isLoading"></app-skeleton>
+      <div
+        class="charts"
+        echarts
+        [options]="componentBoxPlot"
+        style="height: 800px"
+        *ngIf="!isLoading"
+      ></div>
+    </mat-card>
+  </div>
+</div>

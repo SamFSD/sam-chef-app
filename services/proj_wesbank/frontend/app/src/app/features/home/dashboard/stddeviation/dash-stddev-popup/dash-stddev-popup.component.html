@@ -1,0 +1,106 @@
+<div class="row mx-auto" style="height: 850px">
+  <div class="col mx-auto">
+    <div class="row mx-auto align-items-start">
+      <div class="col-4">
+        <img
+          style="padding: 1rem; max-height: 10%; max-width: 50%"
+          src="/assets/WesBank Logo Colour.png"
+        />
+      </div>
+      <div class="col-4" style="text-align: center; padding-top: 2rem">
+        <h2 class="top-row-header">Outlier Vehicle Details</h2>
+      </div>
+      <div class="col-4" style="text-align: right; padding-top: 1rem">
+        <button mat-icon-button mat-dialog-close>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <br />
+    <div class="col" style="margin: 3rem">
+      <h2 class="top-row-header">Vehicle Info</h2>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <div class="col">Fleet Number</div>
+            <div class="col">{{ data.row.fleet_no }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <div class="row">
+            <div class="col">Registration</div>
+            <div class="col">{{ data.row.reg }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <div class="row">
+            <div class="col">Make</div>
+            <div class="col">{{ data.row.make }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <div class="row">
+            <div class="col">Model</div>
+            <div class="col">{{ data.row.model }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <div class="row">
+            <div class="col">Type</div>
+            <div class="col">{{ data.row.type }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <br /><br /><br /><br />
+          <h2 class="top-row-header">Vehicle Stats vs Fleet Averages</h2>
+          <div class="row">
+            <div class="col"></div>
+            <div class="col">Selected Vehicle</div>
+            <div class="col">
+              Avg. for {{ data.row.make }} {{ data.row.model }}
+            </div>
+            <div class="col">Avg. for {{ data.row.type }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <div class="row">
+            <div class="col">Expenditure</div>
+            <div class="col">{{ this.vehicleCost }}</div>
+            <div class="col">{{ this.avgModelCost }}</div>
+            <div class="col">{{ this.avgTypeCost }}</div>
+          </div>
+          <hr class="top-row-divider" />
+          <div class="row">
+            <div class="col"># of Transactions</div>
+            <div class="col">{{ this.vehicleTransactions }}</div>
+            <div class="col">{{ this.avgModelTransactions }}</div>
+            <div class="col">{{ this.avgTypeTransactions }}</div>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      <span
+        >Expenditure for this vehicle is {{ this.typeCostCompPercent }}%
+        {{ this.typeCostComp }} than the average {{ data.row.type }}, and
+        {{ this.modelCostCompPercent }}% {{ this.modelCostComp }} than the
+        average {{ data.row.make }} {{ data.row.model }}.</span
+      >
+      <br />
+      <span
+        >This occurs over {{ this.typeTransCompPercent }}%
+        {{ this.typeTransComp }} transactions than the average
+        {{ data.row.type }}, and {{ this.modelTransCompPercent }}%
+        {{ this.modelTransComp }} transactions than the average
+        {{ data.row.make }} {{ data.row.model }}.
+      </span>
+      <br /><br />
+      <div class="row justify-content-end">
+        <button
+          mat-button
+          class="small_form_button"
+          style="text-align: right !important"
+          type="button"
+          (click)="onViewAssetClick()"
+        >
+          View Asset
+        </button>
+      </div>
+    </div>
+
+    <br />
+  </div>
+</div>

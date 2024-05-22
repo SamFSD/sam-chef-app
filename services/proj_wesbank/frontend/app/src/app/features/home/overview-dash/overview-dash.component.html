@@ -1,0 +1,5 @@
+<!-- <div echarts [options]="optionsSankey" class="chart"></div> -->
+
+<div *ngFor="let div of divisions">
+  <app-branch-holder [division]="div.division"></app-branch-holder>
+</div>

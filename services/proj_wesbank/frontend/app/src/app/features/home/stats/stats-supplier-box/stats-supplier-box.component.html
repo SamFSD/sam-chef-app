@@ -1,0 +1,15 @@
+<div class="row mx-auto p-3">
+  <div class="col">
+    <mat-card class="small-form-mat-card-general-form-holder p-4">
+      <h2 class="top-row-header">Expenditure by Supplier</h2>
+      <app-skeleton *ngIf="isLoading"></app-skeleton>
+      <div
+        class="charts"
+        echarts
+        [options]="supplierBoxPlot"
+        style="height: 800px"
+        *ngIf="!isLoading"
+      ></div>
+    </mat-card>
+  </div>
+</div>
