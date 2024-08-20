@@ -5,21 +5,11 @@ export const environment = {
   _API_AUTH_BASE_PATH: 'http://localhost:8000/*',
   API_BASE_PATH: 'http://localhost:8000',
   auth: {
-    domain: 'fleet-analytics.eu.auth0.com',
-    clientId: 'RWP0zFUGWTkvvkgu8AHvPQ3nSoAGUcWr',
-    audience: 'https://api.mfa.vin/',
+    domain: '',
+    clientId: '',
+    audience: '',
     redirectUri: window.location.origin,
-    PublicKeyCredential: 'WDLEjqmVvzuUDuZvXczuM3QkyVw6fgwR',
+    PublicKeyCredential: '',
   },
 };
 
-// export const environment = {
-//   _API_AUTH_BASE_PATH: 'https://proj-wesbank-backend-q2sht45vwq-ew.a.run.app/*',
-//   API_BASE_PATH: 'https://proj-wesbank-backend-q2sht45vwq-ew.a.run.app',
-//   auth: {
-//     domain: 'fleet-analytics.eu.auth0.com',
-//     clientId: 'WDLEjqmVvzuUDuZvXczuM3QkyVw6fgwR',
-//     audience: 'https://proj-wesbank-backend-q2sht45vwq-ew.a.run.app/',
-//     redirectUri: window.location.origin,
-//   },
-// };
