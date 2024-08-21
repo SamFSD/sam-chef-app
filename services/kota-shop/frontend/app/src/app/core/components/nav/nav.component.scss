@@ -1,37 +1,19 @@
-.mat-toolbar {
-  position: fixed;
-  z-index: 12
+.card-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
 }
 
-.mainHeaderLogo {
-  cursor: pointer !important;
-}
-
-.loader-container {
-  position: fixed;
+.top-row-header {
+  display: flex;
+  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
-  z-index: 99;
+  margin-bottom: 1rem;
 }
 
-app-small-form-component {
-  z-index: 3 !important;
-}
-
-mat-divider {
-  width: 80%;
-  margin: auto;
-}
-
-mat-sidenav-content {
-  min-height: calc(100vh - 64px);
-}
-
-.spacer{
-  flex-grow: 1;
-}
-
-
-:host ::ng-deep .custom-dialog-container {
-  border-radius: 16px !important;
-  overflow: hidden;
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
 }

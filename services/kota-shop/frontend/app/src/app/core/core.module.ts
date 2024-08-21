@@ -13,15 +13,15 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     NavComponent,
-    MenuComponent,
     AuthButtonComponent,
     ProfileComponent,
     AvatarComponent,
@@ -34,6 +34,7 @@ import { SignupButtonComponent } from './components/signup-button/signup-button.
     CommonModule,
     AppRoutingModule,
     MaterialModule,
+    ReactiveFormsModule,
     
     LayoutModule,
     MatToolbarModule,
@@ -42,7 +43,7 @@ import { SignupButtonComponent } from './components/signup-button/signup-button.
     MatIconModule,
     MatListModule,
   ],
-  exports: [NavComponent, MenuComponent, LoadingComponent],
+  exports: [NavComponent,  LoadingComponent],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

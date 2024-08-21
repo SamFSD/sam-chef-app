@@ -3,46 +3,70 @@ import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from '../../services/global.service';
 import { LoaderService } from '../../services/loader/loader.service';
 import { ColorSchemeService } from '../../services/theme/color-scheme.service';
-import { MenuComponent } from '../menu/menu.component';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
-  // animations: [animateMainContent]
 })
-export class NavComponent {
-  @ViewChild(MenuComponent) menuComponent!: MenuComponent;
-
-  // expandedSidenav = false; // must add a click listerner into the html component
-
-  pageTitle = 'Fleet Analytics';
+export class NavComponent { 
   isHandled: boolean = false;
+   // Flag to toggle between login and register
+  isLogin = true;
+  loginForm!: FormGroup;
+  registerForm: FormGroup;
+
+
+
+  toggleView() {
+    this.isLogin = !this.isLogin;
+  }
+
+  onLogin() {
+    if (this.loginForm.valid) {
+      // Handle login logic, such as sending JWT token request
+      const credentials = this.loginForm.value;
+      console.log('Logging in with:', credentials);
+      
+    }
+  }
+
+  onRegister() {
+    if (this.registerForm.valid) {
+      // Handle registration logic, such as sending user data to the backend
+      const newUser = this.registerForm.value;
+      console.log('Registering user:', newUser);
+      // TODO: Implement your registration service
+    }
+  }
 
   constructor(
+    private fb: FormBuilder,
     public loaderService: LoaderService,
     public colorSchemeService: ColorSchemeService,
     public globalService: GlobalService,
-    private changeDetectorRef: ChangeDetectorRef,
     public route: Router,
     public dialog: MatDialog
-  ) {}
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
 
-  ngOnInit() {
-    this.globalService.titleUpdate.subscribe((title) => {
-      this.pageTitle = title;
-      this.changeDetectorRef.detectChanges();
+    // Initialize registration form
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  openDialog() {
-  
-  }
 
-  // expandSidenav() {
-  //   this.menuComponent.expandedSidenav = !this.menuComponent.expandedSidenav;
-  // }   refer to line 25
+
+
 
   getTheme() {
     return this.colorSchemeService.currentActive();
