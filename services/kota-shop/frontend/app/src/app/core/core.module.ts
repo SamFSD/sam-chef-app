@@ -8,27 +8,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from 'src/app/material.module';
 import { AppRoutingModule } from '../app-routing.module';
-import { AuthButtonComponent } from './components/auth-button/auth-button.component';
-import { AvatarComponent } from './components/avatar/avatar.component';
-import { LoadingComponent } from './components/loading/loading.component';
-import { LoginButtonComponent } from './components/login-button/login-button.component';
-import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+
 import { NavComponent } from './components/nav/nav.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     NavComponent,
-    AuthButtonComponent,
-    ProfileComponent,
-    AvatarComponent,
-    LoginButtonComponent,
-    LogoutButtonComponent,
-    SignupButtonComponent,
-    LoadingComponent,
+    DashboardComponent
+
   ],
   imports: [
     CommonModule,
@@ -43,7 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatListModule,
   ],
-  exports: [NavComponent,  LoadingComponent],
+  exports: [NavComponent,DashboardComponent],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

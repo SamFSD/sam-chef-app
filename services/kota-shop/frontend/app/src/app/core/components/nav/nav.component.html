@@ -1,14 +1,18 @@
-
 <mat-card class="card-holder" style="height: 95%; width: 95%;padding-left: 6px;">
   <mat-card-header>
-    Kota Shop Dashboard
+    <p class="top-row-header"> Welcome To Kota Shop Dashboard</p>
   </mat-card-header>
-  <div class="top-row-header">
+
+    <mat-card-header>
+      <p class="top-row-header">Please {{ isLogin ? 'Login' : 'Register' }} Below</p>
+    </mat-card-header>
+
+    <div class="top-row-header">
     <button mat-button (click)="toggleView()">{{ isLogin ? 'Register' : 'Login' }}</button>
   </div>
 
   <ng-container *ngIf="isLogin; else registrationForm">
-    <p class="top-row-header">Login</p>
+    <!-- <p class="top-row-header">Login</p> -->
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Email</mat-label>
@@ -23,7 +27,7 @@
   </ng-container>
 
   <ng-template #registrationForm>
-    <p class="top-row-header">Register</p>
+    <!-- <p class="top-row-header">Register</p> -->
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Username</mat-label>

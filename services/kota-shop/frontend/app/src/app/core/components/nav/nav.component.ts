@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from '../../services/global.service';
-import { LoaderService } from '../../services/loader/loader.service';
 import { ColorSchemeService } from '../../services/theme/color-scheme.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,6 +17,27 @@ export class NavComponent {
   isLogin = true;
   loginForm!: FormGroup;
   registerForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    public colorSchemeService: ColorSchemeService,
+    public globalService: GlobalService,
+    public route: Router,
+    public dialog: MatDialog
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+
+    // Initialize registration form
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
 
 
 
@@ -43,39 +63,5 @@ export class NavComponent {
     }
   }
 
-  constructor(
-    private fb: FormBuilder,
-    public loaderService: LoaderService,
-    public colorSchemeService: ColorSchemeService,
-    public globalService: GlobalService,
-    public route: Router,
-    public dialog: MatDialog
-  ) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
 
-    // Initialize registration form
-    this.registerForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
-
-
-
-
-
-  getTheme() {
-    return this.colorSchemeService.currentActive();
-  }
-
-  toggleTheme() {
-    let newTheme = this.getTheme() === 'dark' ? 'light' : 'dark';
-    // this.setTheme(newTheme);
-  }
-
-  showFiller = false;
 }
