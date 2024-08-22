@@ -12,30 +12,8 @@
 
 // @import "mdb-angular-ui-kit/assets/scss/mdb.scss";
 
-// Define a dark theme
-$dark-theme: mat.define-dark-theme(
-  (
-    color: (
-      primary: mat.define-palette($wesbank-blue),
-      accent: mat.define-palette($wesbank-orange),
-      warn: mat.define-palette($wesbank-red),
-    ),
-    // Only include `typography` and `density` in the default dark theme.
-    typography: mat.define-typography-config(),
-    density: 0,
-  )
-);
 
-// Define a light theme
-$light-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: mat.define-palette($wesbank-blue),
-      accent: mat.define-palette($wesbank-orange),
-      warn: mat.define-palette($wesbank-orange),
-    ),
-  )
-);
+
 // import 'ag-grid-community/styles'
 // import 'ag-grid-community/styles//ag-theme-alpine.css';
 
@@ -90,29 +68,10 @@ body {
   // color: #36b6c3;
 }
 
-// the headers used in top rows
-.wesbank-header-xx {
-  font-size: xx-large !important;
-  // font-weight: bold !important;
-  color: #36b6c3;
-}
-.wesbank-header-x {
-  font-size: x-large !important;
-  // font-weight: bold !important;
-  color: #36b6c3;
-}
 
-.wesbank-header-large {
-  font-size: large !important;
-  // font-weight: bold !important;
-  color: #36b6c3;
-}
 
-.wesbank-header-medium {
-  font-size: medium !important;
-  // font-weight: bold !important;
-  color: #36b6c3;
-}
+
+
 
 .form-select-header {
   font-size: xx-large !important;
@@ -273,11 +232,7 @@ body {
 .mat-mdc-dialog-container .mdc-dialog__surface {
   height: auto !important;
 }
-.wesbank-btn {
-  border: 2px solid #36b6c3;
-  border-radius: 50px;
-  width: 8rem;
-}
+
 
 .color-scheme-light .mat-mdc-snack-bar-container.red-snackbar {
   --mat-mdc-snack-bar-button-color: #f39200;

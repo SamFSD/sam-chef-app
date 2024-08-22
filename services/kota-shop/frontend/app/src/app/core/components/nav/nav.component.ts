@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from '../../services/global.service';
 import { ColorSchemeService } from '../../services/theme/color-scheme.service';
@@ -11,9 +11,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent { 
+export class NavComponent {
   isHandled: boolean = false;
-   // Flag to toggle between login and register
+  // Flag to toggle between login and register
   isLogin = true;
   loginForm!: FormGroup;
   registerForm: FormGroup;
@@ -50,7 +50,7 @@ export class NavComponent {
       // Handle login logic, such as sending JWT token request
       const credentials = this.loginForm.value;
       console.log('Logging in with:', credentials);
-      
+
     }
   }
 
@@ -62,6 +62,9 @@ export class NavComponent {
       // TODO: Implement your registration service
     }
   }
+
+
+  // inventory table 
 
 
 }
