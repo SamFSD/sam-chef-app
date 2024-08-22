@@ -8,5 +8,5 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./services/kota-shop/frontend/app/db.json:/usr/src/app/db.json
+      - ./services/kota-shop-management-system/db/db.json:/usr/src/app/db.json
     command: ["json-server", "--watch", "db.json", "--port", "3000"]

@@ -1,6 +1,6 @@
 export interface Dashboard {
     id: number;
     name: string;
-    quantity: number;
+    description: string; 
     price: number;
-}
+  }

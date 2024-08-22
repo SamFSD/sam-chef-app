@@ -38,9 +38,9 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.api.getUsers().subscribe(
-      users => {
-        console.log('Users:', users);
+    this.api.getAllData().subscribe(
+      allData => {
+        console.log('allData:', allData);
       },
       error => {
         console.log('Error fetching users:', error);
@@ -75,6 +75,24 @@ export class AppComponent {
     if (this.registerForm.valid) {
       const newUser = this.registerForm.value;
       console.log('Registering user:', newUser);
+
+      // Fetch existing users to get the next ID
+      this.api.getUsers().subscribe(users => {
+        const maxId = Math.max(...users.map((user: any) => user.id), 0);
+        const newUserWithId = { ...newUser, id: maxId + 1 };
+
+        // Add new user to the backend
+        this.api.addUser(newUserWithId).subscribe(
+          response => {
+            console.log('User registered successfully:', response);
+            // reset the form 
+            this.registerForm.reset();
+          },
+          error => {
+            console.log('Error registering user:', error);
+          }
+        );
+      });
     }
   }
 }

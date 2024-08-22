@@ -16,7 +16,7 @@ services:
   json-server:
     container_name: json-server
     build:
-      context: ./services/kota-shop-management-system/db  # Path to the directory with Dockerfile
+      context: ./services/kota-shop-management-system/db  
     ports:
       - "3000:3000"
     volumes:

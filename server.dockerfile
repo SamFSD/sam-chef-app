@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 RUN npm install -g json-server
 
 # Copy the local db.json file into the container
-COPY ./services/kota-shop/frontend/app/db.json /usr/src/app/db.json
+COPY ./services/kota-shop-management-system/db/db.json /usr/src/app/db.json
 
 # Expose port 3000
 EXPOSE 3000
