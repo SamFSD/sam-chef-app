@@ -1,0 +1,377 @@
+// Custom Theming for Angular Material https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+
+
+@include mat.core();
+
+// @import "primeng/resources/themes/lara-light-blue/theme.css"; //core primeg cs
+// @import "primeng/resources/primeng.css"; //Optional theme
+
+
+// @import "mdb-angular-ui-kit/assets/scss/mdb.scss";
+
+
+
+// import 'ag-grid-community/styles'
+// import 'ag-grid-community/styles//ag-theme-alpine.css';
+
+// // Apply the dark theme by default
+// // Include all theme styles for the components.
+
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+}
+.mat-tab {
+  border: #43b0ff 3px solid !important;
+  border-radius: 310% !important;
+  background-color: #43b0ff !important;
+}
+
+// the headers used in top rows
+.top-row-header {
+  font-size: xx-large !important;
+  // font-weight: bold !important;
+  color: #36b6c3;
+  padding-left: 0px !important;
+}
+.top-row-header-title {
+  font-size: medium !important;
+  // font-weight: bold !important;
+  // color: #36b6c3;
+}
+
+
+
+
+
+
+.form-select-header {
+  font-size: xx-large !important;
+  // font-weight: bold !important;
+  color: #36b6c3;
+  padding-bottom: 1rem !important;
+}
+
+// horisontal dividers used in top row components
+.top-row-divider {
+  margin: 0.6rem 0 !important;
+}
+
+// chips used to display totalised numbers in the top rows
+.top-row-totals-chip {
+  background-color: #7c878e00 !important;
+  border: solid 2px #f39200 !important;
+}
+.top-row-totals-chip-green {
+  background-color: #7c878e00 !important;
+  border: solid 2px #139203 !important;
+}
+.top-row-totals-chip-red {
+  background-color: #7c878e00 !important;
+  border: solid 2px #d03827 !important;
+}
+.material-icons-my-auto {
+  color: #69d2dc;
+}
+
+.top-row-cpk-holder {
+  font-size: 0.7rem;
+}
+
+.tabulator .tabulator-header {
+  font-weight: normal;
+  font-display: block;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.tabulator .tabulator {
+  position: relative;
+  border: 1px transparent;
+  background-color: #69d2dc !important;
+  border-radius: 10px;
+}
+
+.tabulator {
+  // background-color: #69d2dc;
+  background: none;
+  border: 1px solid #69d2dc !important;
+  border-radius: 10px;
+  padding: 0 !important;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+  background-color: #69d2dc;
+  border-color: #ffffff;
+  color: black;
+  font-weight: 600;
+  padding: 6px;
+}
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable[aria-sort="none"] .tabulator-col-content .tabulator-arrow {
+    border-top: none;
+    border-bottom: 6px solid #000000 !important;
+}
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable[aria-sort="ascending"] .tabulator-col-content .tabulator-arrow {
+    border-top: none !important;
+    border-bottom: 6px solid #000000 !important;
+}
+
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable[aria-sort="descending"] .tabulator-col-content .tabulator-arrow {
+    border-top: 6px solid #000000 !important;
+    border-bottom: none !important;
+}
+
+.tabulator-row .tabulator-cell {
+  // background-color: #ffffff;
+  border-right: none;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+.tabulator .tabulator-footer {
+  background-color: #e6fdff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.tabulator .tabulator-footer .tabulator-footer-contents .tabulator-paginator {
+  background-color: #e6fdff;
+  color: black;
+  text-align: center;
+}
+
+.tabulator .tabulator-footer .tabulator-page {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 2px 5px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  background: #ffffff;
+  border: 2px solid #69d2dc;
+  border-radius: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tabulator .tabulator-header-filter input {
+  box-shadow: none !important;
+  border-radius: 0.75rem !important;
+  box-sizing: none !important;
+  padding: none !important;
+  border: solid 2px #69d2dc !important;
+}
+
+.graphs {
+  width: 98% !important;
+}
+
+.mdc-tab {
+  margin: 0.5rem !important;
+}
+.mdc-tab-indicator {
+  // display: none !important;
+  border: 2px solid #f39200;
+  border-radius: 50px;
+  color: black !important;
+}
+.mdc-tab__text-label {
+  color: black !important;
+}
+.mdc-tab--active {
+  background-color: #f39200 !important;
+  color: black !important;
+  // border: 2px solid #f39200 !important;
+  border-radius: 50px !important;
+}
+.mdc-tab-indicator__content {
+  display: none !important;
+}
+
+.pointer-on-hover {
+  cursor: pointer;
+}
+.card-container {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  height: auto;
+  top: 8px;
+  border-radius: 0.75rem;
+}
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  height: auto !important;
+}
+
+
+.color-scheme-light .mat-mdc-snack-bar-container.red-snackbar {
+  --mat-mdc-snack-bar-button-color: #f39200;
+  --mdc-snackbar-container-color: brown !important;
+  --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
+}
+// @import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+// @import "../node_modules/ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin";
+// .ag-theme-custom {
+//   @include ag-theme-material(
+//     (
+//       background-color: #333,
+//       header-background-color: #e65100,
+//       foreground-color: #fff,
+//       secondary-foreground-color: #eee,
+//       row-hover-color: #444,
+//     )
+//   );
+// }
+
+.small-form-mat-card-general-form-holder {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) 0 2px 4px -1px
+    rgba(0, 0, 0, 0.06) !important;
+  height: 96% !important;
+  top: 8px !important;
+  border-radius: 0.75rem !important;
+}
+.small-form-card-orders-form-holder {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  height: auto !important;
+  border-radius: 0.75rem !important;
+}
+/* Import styles for .small_form_button */
+.small_form_button {
+  border: 2px solid #36b6c3 !important;
+  border-radius: 50px !important;
+  width: 8rem !important;
+}
+
+/* Import styles for .small-form-panel */
+.small-form-panel {
+  width: 100% !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: solid 1px grey !important;
+  box-shadow: none !important;
+}
+
+/* Import styles for .small-form-panel-header */
+.small-form-panel-header {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  background-color: #def2f4 !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: var(
+    --mdc-typography-body1-font-family,
+    var(--mdc-typography-font-family, Roboto, sans-serif)
+  ) !important;
+  font-size: var(--mdc-typography-body1-font-size, 16px) !important;
+  line-height: var(--mdc-typography-body1-line-height, 24px) !important;
+  font-weight: var(--mdc-typography-body1-font-weight, 400) !important;
+  letter-spacing: var(
+    --mdc-typography-body1-letter-spacing,
+    0.03125em
+  ) !important;
+}
+.small-form-panel-expansion {
+  width: 100% !important;
+  border-top-left-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: solid 1px grey !important;
+  box-shadow: none !important;
+}
+.small-form-panel-description {
+  -webkit-font-smoothing: antialiased !important;
+  font-family: var(
+    --mdc-typography-body1-font-family,
+    var(--mdc-typography-font-family, Roboto, sans-serif)
+  ) !important;
+  font-size: var(--mdc-typography-body1-font-size, 9px) !important;
+  line-height: var(--mdc-typography-body1-line-height, 24px) !important;
+  font-weight: var(--mdc-typography-body1-font-weight, 400) !important;
+  letter-spacing: var(
+    --mdc-typography-body1-letter-spacing,
+    0.03125em
+  ) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.small-form-layout {
+  -webkit-font-smoothing: antialiased !important;
+  font-family: var(
+    --mdc-typography-body1-font-family,
+    var(--mdc-typography-font-family, Roboto, sans-serif)
+  ) !important;
+  font-size: var(--mdc-typography-body1-font-size, 9px) !important;
+  line-height: var(--mdc-typography-body1-line-height, 24px) !important;
+  font-weight: var(--mdc-typography-body1-font-weight, 400) !important;
+  letter-spacing: var(
+    --mdc-typography-body1-letter-spacing,
+    0.03125em
+  ) !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.small-form-layout-panel-header {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  background-color: #def2f4 !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: var(
+    --mdc-typography-body1-font-family,
+    var(--mdc-typography-font-family, Roboto, sans-serif)
+  ) !important;
+  font-size: var(--mdc-typography-body1-font-size, 16px) !important;
+  line-height: var(--mdc-typography-body1-line-height, 24px) !important;
+  font-weight: var(--mdc-typography-body1-font-weight, 400) !important;
+
+  letter-spacing: var(
+    --mdc-typography-body1-letter-spacing,
+    0.03125em
+  ) !important;
+}
+
+::ng-deep [tabulator-field="progress"] > div {
+  background-color: red !important;
+}
+
+.general-card-holder {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) 0 2px 4px -1px
+    rgba(0, 0, 0, 0.06) !important;
+  height: auto !important;
+  top: 8px !important;
+  border-radius: 0.75rem !important;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 4px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #15a3b3 ;
+}
+
+:host ::ng-deep .custom-dialog-container {
+  border-radius: 16px !important;
+  overflow: hidden;
+}

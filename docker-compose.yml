@@ -8,7 +8,7 @@ services:
       dockerfile: frontend.dockerfile
       network: host
     ports:
-      - 4201:4201
+      - 4200:4200
     volumes:
       - ./services/kota-shop-management-system/frontend/app:/home/node/app
     command: "yarn start --host 0.0.0.0"
