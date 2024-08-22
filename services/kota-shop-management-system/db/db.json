@@ -1,0 +1,31 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "john_doe",
+        "email": "john@example.com",
+        "password": "hashed_password"
+      },
+      {
+        "id": 2,
+        "username": "jane_doe",
+        "email": "jane@example.com",
+        "password": "hashed_password"
+      }
+    ],
+    "items": [
+      {
+        "id": 1,
+        "name": "Item 1",
+        "description": "Description for item 1",
+        "price": 100
+      },
+      {
+        "id": 2,
+        "name": "Item 2",
+        "description": "Description for item 2",
+        "price": 200
+      }
+    ]
+  }
+  

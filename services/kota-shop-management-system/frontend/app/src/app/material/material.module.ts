@@ -28,10 +28,14 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
+import { HttpClientModule } from '@angular/common/http'; 
+import { BackendService } from '../api-service/backend.service';
+
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule ,
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -85,7 +89,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatSortModule,
     MatChipsModule,
     MatExpansionModule,
-    MatStepperModule
-  ]
+    MatStepperModule,
+    HttpClientModule
+  ],
+  providers: [BackendService],
 })
 export class MaterialModule { }
