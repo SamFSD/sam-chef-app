@@ -13,23 +13,12 @@ services:
       - ./services/kota-shop/frontend/app:/home/node/app
     command: "yarn start --host 0.0.0.0"
 
-  # kota-shop_backend: 
-  #   container_name: kota-shop_backend
-  #   build:
-  #     context: ./services/kota-shop/backend
-  #     dockerfile: backend.dockerfile
-  #     network: host
-  #     args:
-  #       - ENVIRONMENT=${ENVIRONMENT-dev}
-  #   environment:
-  #     # - GOOGLE_APPLICATION_CREDENTIALS=/tmp/keys/application_default_credentials.json
-  #     # - GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT:-gcp_project_name}
-  #     # - POSTGRES_DB=${POSTGRES_DB:-db}
-  #     # - AUTH0_AUDIENCE=RWP0zFUGWTkvvkgu8AHvPQ3nSoAGUcWr
-  #     # - AUTH0_DOMAIN=fleet-analytics.eu.auth0.com
-  #   ports:
-  #     - 8000:8000
-  #   volumes:
-  #     - ./services/kota-shop/backend/src:/app
-  #     # - ~/.config/gcloud/application_default_credentials.json:/tmp/keys/application_default_credentials.json
-  #   command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port ${PORT-8000} --log-level info
+    
+  json-server:
+    container_name: json-server
+    image: json-server:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./path/to/db.json:/usr/src/app/db.json
+    command: "json-server --watch /usr/src/app/db.json --port 3000"
