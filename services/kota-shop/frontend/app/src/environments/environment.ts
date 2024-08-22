@@ -2,8 +2,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  _API_AUTH_BASE_PATH: 'http://localhost:8000/*',
-  API_BASE_PATH: 'http://localhost:8000',
+  _API_AUTH_BASE_PATH: 'http://localhost:3000/*',
+  API_BASE_PATH: 'http://localhost:3000',
   auth: {
     domain: '',
     clientId: '',

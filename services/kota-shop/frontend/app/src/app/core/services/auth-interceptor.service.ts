@@ -9,13 +9,16 @@ import { Observable } from 'rxjs';
 import { finalize, mergeMap, tap } from 'rxjs/operators';
 import { AuthService } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http'; // Import HttpClient
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   // Define the URL or path you want to intercept
   private readonly targetUrl = `${environment.API_BASE_PATH}`;
+  
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService,  private http: HttpClient  ) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -23,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (request.url.startsWith(this.targetUrl)) {
       return this.auth.idTokenClaims$.pipe(
-        mergeMap((token) => {
+        mergeMap((token: any) => {
           const accessToken = token?.__raw;
 
           const authRequest = request.clone({
@@ -40,5 +43,10 @@ export class AuthInterceptor implements HttpInterceptor {
       // If the request URL doesn't match the target, proceed without interception
       return next.handle(request);
     }
+  }
+
+  checkUserExists(email: string, password: string) {
+    const url = `${environment.API_BASE_PATH}/users?email=${email}&password=${password}`;
+    return this.http.get<any>(url); // Assuming your backend returns a user object or an empty array if not found
   }
 }
