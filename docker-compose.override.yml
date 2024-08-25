@@ -1,12 +1,59 @@
 version: "3"
 services:
-  json-server:
-    container_name: json-server
-    build:
-      context: .
-      dockerfile: server.dockerfile
+
+  local-db:
+    container_name: local-db
+    image: postgres:14-alpine
+    # build:
+    #   context: ./services/lw_api/db
+    #   dockerfile: db.dockerfile
     ports:
-      - 3000:3000
+      - 5433:5432
     volumes:
-      - ./services/kota-shop-management-system/db/db.json:/usr/src/app/db.json
-    command: ["json-server", "--watch", "db.json", "--port", "3000"]
+      - local-db-data:/var/lib/postgresql/data/pgdata
+      # - ./services/lw_api/db/sql:/docker-entrypoint-initdb.d/
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=masterKey
+    command: postgres -c log_statement=all
+
+  db-local:
+    container_name: db-local
+    image: postgres:14-alpine
+    ports:
+      - 5433:5432
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=masterKey
+      - POSTGRES_DB=_db
+    volumes:
+      - db-local-data:/var/lib/postgresql/data/pgdata
+    command: postgres -c log_statement=all
+
+
+
+
+
+
+  pgadmin:
+    # postgres database graphical interface dashboard
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=postgres@postgres.com
+      - PGADMIN_DEFAULT_PASSWORD=grespost
+      - PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION=True
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+
+
+volumes:
+  local-db-data:
+  db-local-data:
+  pgadmin-data:
+
