@@ -1,5 +1,27 @@
-version: "3"
 services:
+  kota-shop_frontend:
+    container_name: kota-shop_frontend
+    build:
+      context: ./services/kota-shop-management-system/frontend
+      dockerfile: frontend.dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - ./services/kota-shop-management-system/frontend/app:/home/node/app
+    command: "yarn start --host 0.0.0.0"
+
+  kota-shop_backend:
+    container_name: kota-shop_backend
+    build:
+      context: ./services/kota-shop-management-system/backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./services/kota-shop-management-system/backend:/app
+    environment:
+      - DATABASE_URL=postgres://postgres:masterKey@db:5432/database_aws
+    command: ["go", "run", "main.go"]
+
 
   local-db:
     container_name: local-db
