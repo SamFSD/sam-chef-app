@@ -1,4 +1,3 @@
-version: "3"
 services:
   kota-shop_frontend:
     container_name: kota-shop_frontend
