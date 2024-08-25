@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BackendService } from '../api-service/backend.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -20,7 +21,8 @@ export class LoginPageComponent {
   constructor(
     private fb: FormBuilder,
     private api: BackendService,
-    public router: Router 
+    public router: Router ,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,6 +37,10 @@ export class LoginPageComponent {
   }
 
   ngOnInit(): void {
+
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
     this.api.getAllData().subscribe(
       allData => {
         console.log('allData:', allData);

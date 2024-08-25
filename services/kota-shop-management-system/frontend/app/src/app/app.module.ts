@@ -17,7 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DashboardModule,
     MaterialModule,
     HttpClientModule,
-    RouterModule.forRoot(routes) // Add RouterModule with your routes
+    RouterModule.forRoot(routes) 
   ],
   providers: [
     provideHttpClient(withFetch())
