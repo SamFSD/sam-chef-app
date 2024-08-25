@@ -24,15 +24,12 @@ jobs:
         yarn install
 
     - name: Build project
-      run: |
-        cd services/kota-shop-management-system/frontend
-        yarn install
-        cd sh services/kota-shop-management-system/start_services.sh
+      run: sh services/kota-shop-management-system/start_services.sh
    
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        deploy_branch: gh-pages  # Branch to deploy to
-        publish_dir: services/kota-shop-management-system/frontend/build  # Directory with built files
+        deploy_branch: gh-pages 
+        publish_dir: services/kota-shop-management-system/frontend/build 
       
