@@ -1,10 +1,9 @@
-name: Deploy to S3
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - master
-  workflow_dispatch:  # Allows manual trigger from the GitHub Actions tab
+      - master  # Deploy when changes are pushed to the main branch
 
 jobs:
   deploy:
@@ -14,24 +13,25 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Node.js (if needed)
+    - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '14'
+        node-version: '14'  # Specify the Node.js version required
 
-    - name: Install Docker
-      run: sudo apt-get install -y docker.io
+    - name: Install dependencies
+      run: |
+        cd services/kota-shop-management-system/frontend
+        yarn install
 
-    - name: Build Docker image
-      run: docker build -f services/kota-shop-management-system/server.dockerfile -t my-image .
+    - name: Build project
+      run: |
+        cd services/kota-shop-management-system/frontend
+        sh ../../start_services.sh
+   
 
-    - name: Deploy to S3
-      uses: aws-actions/s3-sync-action@v1
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        source-dir: 'build'
-        destination-bucket: 'sam2awsbucket'
-        args: '--acl public-read --delete'
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'eu-north-1'
+        deploy_branch: gh-pages  # Branch to deploy to
+        publish_dir: services/kota-shop-management-system/frontend/build  # Directory with built files
+      
