@@ -8,7 +8,7 @@ The Kota Shop Management System is a full-stack application designed to manage a
 
 - **Frontend**: Angular
 - **Backend**: Go (Golang)
-- **Database**: JSON Server
+- **Database**: postgresSQL (AWS)
 
 ## Project Structure
 
@@ -60,7 +60,7 @@ Run the following command to start all services:
 sh services/kota-shop-management-system/start_services.sh
 
 
-This script will execute the following tasks:
+### **This script will execute the following tasks:**
 
 Start the Frontend Service: The Angular application will be served at http://localhost:4200.
 Start the Backend Service: The Go application will handle API requests at http://localhost:8080.
