@@ -113,11 +113,3 @@ Port Conflicts: Make sure that the ports 4200, 8080, and 3000 are not being used
 
 Docker Issues: If you encounter issues with Docker, try rebuilding the containers:
 
-bash
-Copy code
-docker-compose down --rmi all
-docker-compose up --build
-Future Enhancements
-User Authentication: Implement a user authentication system using JWT.
-Persistent Database: Replace JSON Server with a more robust database solution like PostgreSQL.
-Deployment: Set up CI/CD pipelines for deploying the application to production environments.
