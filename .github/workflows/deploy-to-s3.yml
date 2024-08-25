@@ -3,8 +3,8 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main  # or your default branch
-  workflow_dispatch:  # Allows manual trigger from the GitHub Actions tab
+      - main
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   deploy:
@@ -17,7 +17,7 @@ jobs:
     - name: Set up Node.js (if needed)
       uses: actions/setup-node@v3
       with:
-        node-version: '14'  # specify the Node.js version if needed
+        node-version: '14'
 
     - name: Install dependencies (if needed)
       run: npm install
@@ -28,7 +28,7 @@ jobs:
     - name: Deploy to S3
       uses: aws-actions/s3-sync-action@v1
       with:
-        source-dir: 'build'  # Update if your build directory is different
+        source-dir: 'build'
         destination-bucket: 'sam2awsbucket'
         args: '--acl public-read --delete'
       env:
