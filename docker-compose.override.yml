@@ -4,7 +4,7 @@ services:
     container_name: kota-shop_frontend
     build:
       context: ./services/kota-shop-management-system/frontend
-      dockerfile: frontend.dockerfile  # Ensure this file exists
+      dockerfile: frontend.dockerfile  
     ports:
       - 4200:4200
     volumes:
@@ -15,7 +15,7 @@ services:
     container_name: kota-shop_backend
     build:
       context: ./services/kota-shop-management-system/backend
-      dockerfile: backend.dockerfile  # Ensure this file exists
+      dockerfile: backend.dockerfile  
     ports:
       - "8080:8080"
     volumes:
