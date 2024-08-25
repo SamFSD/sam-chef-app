@@ -37,19 +37,19 @@ services:
       - POSTGRES_PASSWORD=masterKey
     command: postgres -c log_statement=all
 
-  db-local:
-    container_name: db-local
-    image: postgres:14-alpine
-    ports:
-      - 5433:5432
-    environment:
-      - PGDATA=/var/lib/postgresql/data/pgdata
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=masterKey
-      - POSTGRES_DB=_db
-    volumes:
-      - db-local-data:/var/lib/postgresql/data/pgdata
-    command: postgres -c log_statement=all
+  # db-local:
+  #   container_name: db-local
+  #   image: postgres:14-alpine
+  #   ports:
+  #     - 5433:5432
+  #   environment:
+  #     - PGDATA=/var/lib/postgresql/data/pgdata
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=masterKey
+  #     - POSTGRES_DB=_db
+  #   volumes:
+  #     - db-local-data:/var/lib/postgresql/data/pgdata
+  #   command: postgres -c log_statement=all
 
   pgadmin:
     container_name: pgadmin
@@ -65,5 +65,4 @@ services:
 
 volumes:
   local-db-data:
-  db-local-data:
   pgadmin-data:
