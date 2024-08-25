@@ -26,7 +26,8 @@ jobs:
     - name: Build project
       run: |
         cd services/kota-shop-management-system/frontend
-        sh ../../start_services.sh
+        yarn install
+        cd sh services/kota-shop-management-system/start_services.sh
    
 
     - name: Deploy to GitHub Pages
