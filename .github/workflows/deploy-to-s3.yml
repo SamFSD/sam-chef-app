@@ -3,8 +3,8 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - master
-  workflow_dispatch:  # Allows manual trigger
+      - main
+  workflow_dispatch:  # Allows manual trigger from the GitHub Actions tab
 
 jobs:
   deploy:
@@ -25,13 +25,20 @@ jobs:
     - name: Build project (if needed)
       run: sh services/kota-shop-management-system/start_services.sh 
 
+    - name: Install s3cmd
+      run: sudo apt-get install -y s3cmd
+
+    - name: Configure s3cmd
+      run: |
+        s3cmd --configure --access_key=${{ secrets.AWS_ACCESS_KEY_ID }} --secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }} --region=eu-north-1
+
     - name: Deploy to S3
-      uses: aws-actions/s3-sync-action@v1
+      uses: s3-actions/s3cmd@v1.6.1
       with:
-        source-dir: 'build'
-        destination-bucket: 'sam2awsbucket'
-        args: '--acl public-read --delete'
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'eu-north-1'
+        provider: s3
+        region: eu-north-1
+        access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        args: '--recursive --acl-public --delete-removed'
+        source-dir: 'build'  # Update if your build directory is different
+        destination-bucket: 's3://sam2awsbucket'
