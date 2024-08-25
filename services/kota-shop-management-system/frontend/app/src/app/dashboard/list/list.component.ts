@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Dashboard } from '../dashboard';
 import { BackendService } from '../../api-service/backend.service';
+import { MaterialModule } from '../../material/material.module';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [],
+  imports: [MaterialModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
