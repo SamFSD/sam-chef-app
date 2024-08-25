@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+
+import { Router, RouterOutlet } from '@angular/router';
+import { LoginPageComponent } from './login-page/login-page.component';
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [RouterOutlet, LoginPageComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  constructor(private router: Router) {}
+export class AppComponent {
+  constructor(public router: Router) { }
 
   ngOnInit() {
-    // Add a check to avoid infinite redirect loops
-    if (this.router.url === '/' || this.router.url === '') {
-      this.router.navigate(['/login']);
-    }
+  
   }
 }

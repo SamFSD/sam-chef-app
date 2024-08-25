@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Dashboard } from '../dashboard';
+import { BackendService } from '../../api-service/backend.service';
 
 @Component({
   selector: 'app-list',
@@ -8,5 +11,19 @@ import { Component } from '@angular/core';
   styleUrl: './list.component.scss'
 })
 export class ListComponent {
+  displayedColumns: string[] = ['id', 'name', 'description', 'price']; 
+  dataSource = new MatTableDataSource<Dashboard>([]);
 
+  constructor(private api: BackendService) { }
+
+  ngOnInit(): void {
+    this.api.getItems().subscribe(
+      (items: Dashboard[]) => {
+        this.dataSource.data = items;
+      },
+      error => {
+        console.log('Error fetching items:', error);
+      }
+    );
+  }
 }

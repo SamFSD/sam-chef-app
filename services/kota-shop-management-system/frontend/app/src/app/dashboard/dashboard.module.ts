@@ -9,11 +9,12 @@ import { ViewComponent } from './view/view.component';
 
 @NgModule({
   declarations: [
-    ListComponent,
-    AddComponent,
-    ViewComponent
+ 
   ],
   imports: [
+    ListComponent,
+    AddComponent,
+    ViewComponent,
     CommonModule,
     dashboardRoutingModule,
     ReactiveFormsModule,
