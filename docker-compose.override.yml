@@ -1,9 +1,10 @@
+version: "3"
 services:
   kota-shop_frontend:
     container_name: kota-shop_frontend
     build:
       context: ./services/kota-shop-management-system/frontend
-      dockerfile: frontend.dockerfile
+      dockerfile: frontend.dockerfile  # Ensure this file exists
     ports:
       - 4200:4200
     volumes:
@@ -14,6 +15,7 @@ services:
     container_name: kota-shop_backend
     build:
       context: ./services/kota-shop-management-system/backend
+      dockerfile: backend.dockerfile  # Ensure this file exists
     ports:
       - "8080:8080"
     volumes:
@@ -22,18 +24,13 @@ services:
       - DATABASE_URL=postgres://postgres:masterKey@db:5432/database_aws
     command: ["go", "run", "main.go"]
 
-
   local-db:
     container_name: local-db
     image: postgres:14-alpine
-    # build:
-    #   context: ./services/lw_api/db
-    #   dockerfile: db.dockerfile
     ports:
       - 5433:5432
     volumes:
       - local-db-data:/var/lib/postgresql/data/pgdata
-      # - ./services/lw_api/db/sql:/docker-entrypoint-initdb.d/
     environment:
       - PGDATA=/var/lib/postgresql/data/pgdata
       - POSTGRES_USER=postgres
@@ -54,13 +51,7 @@ services:
       - db-local-data:/var/lib/postgresql/data/pgdata
     command: postgres -c log_statement=all
 
-
-
-
-
-
   pgadmin:
-    # postgres database graphical interface dashboard
     container_name: pgadmin
     image: dpage/pgadmin4
     ports:
@@ -72,10 +63,7 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
 
-
-
 volumes:
   local-db-data:
   db-local-data:
   pgadmin-data:
-
