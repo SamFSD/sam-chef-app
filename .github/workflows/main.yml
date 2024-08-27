@@ -42,4 +42,4 @@ jobs:
           aws-region: eu-north-1
 
       - name: Deploy static site to S3 bucket
-        run: aws s3 sync services/kota_shop/frontend/app/dist/ s3://sam2awsbucket --delete
+        run: aws s3 sync services/kota_shop/frontend/app/dist/ s3://kotashop --delete
