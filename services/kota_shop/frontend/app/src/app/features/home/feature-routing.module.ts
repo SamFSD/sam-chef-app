@@ -8,7 +8,7 @@ import { DashboardComponent } from 'src/app/core/components/dashboard/dashboard.
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: DashboardComponent, canActivate: [AuthGuard]
   },
  
 ];
