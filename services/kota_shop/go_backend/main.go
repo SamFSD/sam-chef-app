@@ -21,12 +21,11 @@ func main() {
 }
 
 func initRouter() *gin.Engine {
-	// Create a Gin router with default middleware: logger and recovery (crash-free) middleware
 	router := gin.Default()
 
 	// CORS configuration
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:4200"}, // Adjust as necessary
+		AllowOrigins:     []string{"http://localhost:4200", "http://sam2awsbucket.s3-website.eu-north-1.amazonaws.com"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Authorization", "Content-Type"},
 		AllowCredentials: true,
