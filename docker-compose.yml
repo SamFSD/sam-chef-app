@@ -1,0 +1,34 @@
+version: "3"
+services:
+
+  kota_shop_frontend:
+    container_name: kota_shop_frontend
+    build:
+      context: ./services/kota_shop/frontend
+      dockerfile: frontend.dockerfile
+      network: host
+    ports:
+      - 4200:4200
+    volumes:
+      - ./services/kota_shop/frontend/app:/home/node/app
+    command: "yarn start --host 0.0.0.0 --disable-host-check"
+ 
+#### backend container ::: TODO
+  kota_shop_backend: 
+    container_name: kota_shop_backend
+    build:
+      context: ./services/kota_shop/backend
+      dockerfile: backend.dockerfile
+      network: host
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:amazon_aws}
+      # - AUTH0_AUDIENCE=
+      # - AUTH0_DOMAIN=
+    ports:
+      - 8080:8080
+    volumes:
+      - ./services/kota_shop/backend/src:/app
+    command: go run main.go:app --reload --workers 1 --host 0.0.0.0 --port ${PORT-8080} --log-level info
+

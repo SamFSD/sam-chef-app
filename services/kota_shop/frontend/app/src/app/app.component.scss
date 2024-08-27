@@ -1,0 +1,31 @@
+app-nav {
+  min-height: 100vh;
+}
+
+.position-lg {
+  font-size: 5rem;
+  font-weight: bold;
+}
+// Tabulator table placeholder text
+::ng-deep
+  .tabulator
+  .tabulator-tableholder
+  .tabulator-placeholder
+  .tabulator-placeholder-contents {
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+  color: #36b6c3 !important;
+  font-weight: bold;
+  font-size: 20px;
+  white-space: normal;
+}
+
+/* table css */
+.loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+}

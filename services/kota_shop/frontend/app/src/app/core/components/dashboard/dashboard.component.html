@@ -1,0 +1,25 @@
+<mat-toolbar class="mat-elevation-z3 px-4">
+  <img src="" height="60%" class="mainHeaderLogo pl-0" style="max-height: 50%"
+    routerLink="/" />
+
+  <div class="row mx-auto my-auto" style="width: 60%; background-color: white;;" *ngIf="route.url !== '/'">
+    <button mat-button style="border: 2px solid #36b6c3; border-radius: 50px; width: 100%" type="submit" class=""
+      (click)="openDialog()">      
+      <mat-icon class="clear-icon">filter_list</mat-icon>&nbsp;&nbsp;
+    </button>
+  </div>
+
+  <app-avatar class="ms-auto"></app-avatar>
+  <mat-menu #profile_menu>
+    <app-profile></app-profile>
+    <mat-divider></mat-divider>
+    <app-auth-button></app-auth-button>
+  </mat-menu>
+
+</mat-toolbar>
+<br><br>
+
+testing reload
+
+<p class="top-row-header pt-4" style="text-align: center;">Kota Shop Inventory</p>
+<div id="inventory-table"></div>

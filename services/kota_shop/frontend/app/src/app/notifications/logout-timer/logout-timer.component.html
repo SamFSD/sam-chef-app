@@ -1,0 +1,14 @@
+<div class="col mx-auto">
+  <div class="row mx-auto">
+    <img class="logo mx-auto" style="padding: 1rem" src="" />
+  </div>
+  <h1 mat-dialog-title class="m-0 text-center pb-0"><b>Auto Logout Alert!</b></h1>
+  <div mat-dialog-content class="p-3">
+    <h2>You're about to be logged out in <span class="counter"><b>{{formattedCountDown ? formattedCountDown : '05:00'}}</b></span> due to inactivity.</h2>
+  </div>
+  <div class="card-footer p-3 text-center">
+    <button mat-button style="border: 2px solid #f39200; border-radius: 50px; width: 8rem" type="submit" (click)="closeDialog()">
+      <span>Cancel</span>
+    </button>
+  </div>
+</div>

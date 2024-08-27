@@ -1,0 +1,11 @@
+
+
+<button mat-icon-button class="prifile-btn2" (click)="globalService.showUserPermissions()">
+    <mat-icon class="info-icon">help_outline</mat-icon>&nbsp;
+</button>
+<button mat-icon-button [matMenuTriggerFor]="matMenu" class="prifile-btn2">
+
+    <img *ngIf="avatar" id="avatar" [src]="avatar">
+    <mat-icon *ngIf="!avatar">account_circle</mat-icon>
+</button>
+
