@@ -1,32 +1,29 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '@auth0/auth0-angular';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environtment-api';
-import { catchError, first, switchMap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ApiService {
   private apiUrl = environment._API_AUTH_BASE_PATH;
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private http: HttpClient) {}
 
-  getProtectedData() {
-    return this.auth.idTokenClaims$.pipe(
-      first(),
-      switchMap((token: any) => {
-        const headers = new HttpHeaders({
-          Authorization: `Bearer ${token.__raw}`,
-        });
-        return this.http.get(`${this.apiUrl}/api/items`, { headers });
-      }),
-      catchError((error) => {
-        console.error('Error:', error);
-        return throwError(error);
-      })
-    );
+  getProtectedData(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/items`);
   }
-  
+
+  addItem(item: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/items`, item);
+  }
+
+  editItem(item: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/items`, item);
+  }
+
+  deleteItem(itemName: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/items/${itemName}`);
+  }
 }

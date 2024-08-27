@@ -40,3 +40,49 @@ func GetItems(c *gin.Context) {
 
 	c.JSON(http.StatusOK, items)
 }
+
+func AddItem(c *gin.Context) {
+	var item Item
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		return
+	}
+
+	_, err := database.DB.Exec("INSERT INTO items (item_name, item_description, item_count) VALUES (?, ?, ?)",
+		item.ItemName, item.ItemDescription, item.ItemCount)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add item"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "Item added"})
+}
+
+func EditItem(c *gin.Context) {
+	var item Item
+	if err := c.ShouldBindJSON(&item); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request payload"})
+		return
+	}
+
+	_, err := database.DB.Exec("UPDATE items SET item_description = ?, item_count = ? WHERE item_name = ?",
+		item.ItemDescription, item.ItemCount, item.ItemName)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update item"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "Item updated"})
+}
+
+func DeleteItem(c *gin.Context) {
+	itemName := c.Param("item_name")
+
+	_, err := database.DB.Exec("DELETE FROM items WHERE item_name = ?", itemName)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete item"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"status": "Item deleted"})
+}

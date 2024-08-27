@@ -4,7 +4,7 @@
 
   <div class="row mx-auto my-auto" style="width: 60%; background-color: white;;" *ngIf="route.url !== '/'">
     <button mat-button style="border: 2px solid #36b6c3; border-radius: 50px; width: 100%" type="submit" class=""
-      (click)="openDialog()">      
+      (click)="openDialog('action' , 'item')">      
       <mat-icon class="clear-icon">filter_list</mat-icon>&nbsp;&nbsp;
     </button>
   </div>
