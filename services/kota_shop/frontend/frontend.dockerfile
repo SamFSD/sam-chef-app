@@ -9,11 +9,11 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node ./app .
 
-RUN chown -R node:node /home/node/app/.angular/cache
+# RUN chown -R node:node /home/node/app/.angular/cache
 
 
 USER node
-RUN rm -rf /home/node/app/.angular/cache
+# RUN rm -rf /home/node/app/.angular/cache
 
 
 # Use the --disable-host-check flag
