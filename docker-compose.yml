@@ -23,7 +23,7 @@ services:
       args:
         - ENVIRONMENT=${ENVIRONMENT}
     environment:
-      - POSTGRES_DB=${POSTGRES_DB:amazon_aws}
+      - POSTGRES_DB=$${POSTGRES_DB:-amazon_aws}
       # - AUTH0_AUDIENCE=
       # - AUTH0_DOMAIN=
     ports:
