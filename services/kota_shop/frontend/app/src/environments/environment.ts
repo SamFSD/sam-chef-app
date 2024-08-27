@@ -5,8 +5,8 @@ export const environment = {
   _API_AUTH_BASE_PATH: 'http://localhost:8000/*',
   API_BASE_PATH: 'http://localhost:8000',
   auth: {
-    domain: 'dev-6bycpoidp36735cn.us.auth0.com',
-    clientId: 'LnbpgkLJOWhAmt7T8IKVDhm6EjvCGZYp',
+    domain: 'dev-v0wwscx8d8hz7hj6.us.auth0.com',
+    clientId: 'o9vPpOTBqPkcDuC6oUAqDgljoBD1WY6P',
     // audience: 'https://api.mfa.vin/',
     redirectUri: window.location.origin,
     // PublicKeyCredential: 'WDLEjqmVvzuUDuZvXczuM3QkyVw6fgwR',

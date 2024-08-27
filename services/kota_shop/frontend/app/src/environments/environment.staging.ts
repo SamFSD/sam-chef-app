@@ -5,8 +5,9 @@ export const environment = {
   // _ API_AUTH_BASE_PATH: '/*',
   // API_BASE_PATH: '',
   auth: {
-    domain: 'dev-6bycpoidp36735cn.us.auth0.com',
-    clientId: 'LnbpgkLJOWhAmt7T8IKVDhm6EjvCGZYp',
+   
+      domain: 'dev-v0wwscx8d8hz7hj6.us.auth0.com',
+      clientId: 'o9vPpOTBqPkcDuC6oUAqDgljoBD1WY6P',
     // audience: '',
     redirectUri: window.location.origin,
     // PublicKeyCredential: 'WDLEjqmVvzuUDuZvXczuM3QkyVw6fgwR',
