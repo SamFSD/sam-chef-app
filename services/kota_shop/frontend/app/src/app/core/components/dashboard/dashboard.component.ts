@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.api.getProtectedData().subscribe((res) => {
       this.itemsData = res;
+      console.log(res, "backend data")
       this.initTable();
     });
 
