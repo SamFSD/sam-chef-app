@@ -25,7 +25,11 @@ func initRouter() *gin.Engine {
 
 	// CORS configuration
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://127.0.0.1:4200, http://localhost:4200", "http://sam2awsbucket.s3-website.eu-north-1.amazonaws.com", "*"},
+		AllowOrigins: []string{
+			"http://127.0.0.1:4200",
+			"http://localhost:4200",
+			"http://sam2awsbucket.s3-website.eu-north-1.amazonaws.com",
+		},
 		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Authorization", "Content-Type"},
 		AllowCredentials: true,
