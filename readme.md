@@ -34,7 +34,7 @@ Before running the project, ensure you have the following installed on your mach
 
     ```bash
     git clone <repository_url>
-    cd kota-shop-management-system
+    cd kota_shop
     ```
 
 2. **Install dependencies for the frontend:**
@@ -42,7 +42,7 @@ Before running the project, ensure you have the following installed on your mach
     Navigate to the frontend directory and install the necessary dependencies:
 
     ```bash
-    cd services/kota-shop-management-system/frontend
+    cd services/kota_shop/frontend
     yarn install
     ```
 
@@ -52,25 +52,23 @@ Before running the project, ensure you have the following installed on your mach
 
 ## Running the Project
 
-To start the project, you need to run the Docker services for the frontend, backend, and JSON Server database.
+To start the project, you need to run the Docker services for the frontend, backend
 
 ### Starting the Services
 
 Run the following command to start all services:
 
 ```bash
-sh services/kota-shop-management-system/start_services.sh
+sh services/kota_shop/start_services.sh
 
 
 ### **This script will execute the following tasks:**
 
 Start the Frontend Service: The Angular application will be served at http://localhost:4200.
 Start the Backend Service: The Go application will handle API requests at http://localhost:8080.
-Start the JSON Server: The mock database will be available at http://localhost:3000.
 Accessing the Application
 Frontend: Open your browser and navigate to http://localhost:4200 to access the Angular user interface.
 Backend API: The backend API can be accessed at http://localhost:8080.
-Database: The mock database (JSON Server) can be accessed at http://localhost:3000.
 Development Workflow
 Adding/Editing/Deleting Data: Manage users and items via the Angular frontend. The operations will reflect in the JSON Server database.
 Modifying Backend Logic: Modify the Go application source code in the backend directory. Ensure you rebuild the Docker image after making changes.
@@ -110,7 +108,7 @@ Permission Denied Errors: Ensure that the shell script start_services.sh and oth
 
 bash
 Copy code
-chmod +x services/kota-shop-management-system/start_services.sh
+chmod +x services/kota_shop/start_services.sh
 Port Conflicts: Make sure that the ports 4200, 8080, and 3000 are not being used by other services on your machine.
 
 Docker Issues: If you encounter issues with Docker, try rebuilding the containers:
