@@ -9,7 +9,7 @@ WORKDIR /home/node/app
 
 COPY --chown=node:node ./app .
 
-# RUN chown -R node:node /home/node/app/.angular/cache
+RUN mkdir -p /home/node/app/.angular && chmod -R 777 /home/node/app/.angular
 
 
 USER node
