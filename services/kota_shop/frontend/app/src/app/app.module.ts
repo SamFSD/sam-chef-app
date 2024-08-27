@@ -34,7 +34,6 @@ import { AppGlobalService } from './app-global.service';
 import { GlobalService } from './core/services/global.service';
 
 import { CommonModule } from '@angular/common';
-import { AgGridModule } from 'ag-grid-angular';
 import { AuthInterceptor } from './core/services/auth-interceptor.service';
 import { TabulatorModule } from './tabulator.module';
 
@@ -72,7 +71,6 @@ import { TabulatorModule } from './tabulator.module';
     }),
     BrowserAnimationsModule,
     CoreModule,
-    AgGridModule,
   ],
   providers: [  
     GlobalService,
