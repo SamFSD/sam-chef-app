@@ -112,4 +112,5 @@ chmod +x services/kota_shop/start_services.sh
 Port Conflicts: Make sure that the ports 4200, 8080, and 3000 are not being used by other services on your machine.
 
 Docker Issues: If you encounter issues with Docker, try rebuilding the containers:
+site : http://sam2awsbucket.s3-website.eu-north-1.amazonaws.com/
 
