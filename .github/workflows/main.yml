@@ -1,47 +1,45 @@
-name: deploy to s3
+name: Deploy to S3
 
 on:
   push:
     branches:
-    - master
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: '1.x'
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.18'  # Specify the Go version you need
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Specify the Node.js version you need
 
-    - name: Build Backend
-      run: |
-        cd services/kota_shop/go_backend
-        go mod tidy
-        go build -o bin/backend main.go
+      - name: Install dependencies and build backend
+        run: |
+          cd services/kota_shop/go_backend
+          go mod tidy
+          go build -o kota_shop_backend main.go
 
-    - name: Install Frontend Dependencies
-      run: |
-        cd services/kota_shop/frontend/app/
-        yarn install
+      - name: Install dependencies and build frontend
+        run: |
+          cd services/kota_shop/frontend/app/
+          yarn install
+          yarn ng build --configuration production --aot
 
-    - name: Build Application
-      run: sh services/kota_shop/start_services.sh
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-north-1
-
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./public/ s3://sam2awsbucket --delete
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync services/kota_shop/frontend/app/dist/ s3://sam2awsbucket --delete
