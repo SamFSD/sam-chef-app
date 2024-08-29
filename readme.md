@@ -61,7 +61,7 @@ Run the following command to start all services:
 ```bash
 sh services/kota_shop/start_services.sh
 
-
+uncomment the url redirect to run in the local machine
 ### **This script will execute the following tasks:**
 
 Start the Frontend Service: The Angular application will be served at http://localhost:4200.
