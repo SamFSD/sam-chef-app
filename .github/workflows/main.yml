@@ -15,12 +15,12 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.18'  # Specify the Go version you need
+          go-version: '1.18'
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.12.0'  # Updated to the required Node.js version
+          node-version: '18.12.0'
 
       - name: Install dependencies and build backend
         run: |
@@ -33,6 +33,9 @@ jobs:
           cd services/kota_shop/frontend/app/
           yarn install
           yarn ng build --configuration production --aot
+
+      - name: List files in dist directory
+        run: ls -la services/kota_shop/frontend/app/dist/
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
