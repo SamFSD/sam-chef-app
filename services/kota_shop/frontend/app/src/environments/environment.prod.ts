@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  _API_AUTH_BASE_PATH: 'http://localhost:8000/*',
-  API_BASE_PATH: 'http://localhost:8000',
+  _API_AUTH_BASE_PATH: 'http://localhost:8080/api',
+  API_BASE_PATH: 'http://localhost:8080/api', 
 
   auth: {
     domain: 'dev-v0wwscx8d8hz7hj6.us.auth0.com',

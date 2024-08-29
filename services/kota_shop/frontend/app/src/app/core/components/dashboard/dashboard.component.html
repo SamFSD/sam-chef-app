@@ -1,10 +1,9 @@
 <mat-toolbar class="mat-elevation-z3 px-4">
-  <img src="" height="60%" class="mainHeaderLogo pl-0" style="max-height: 50%"
-    routerLink="/" />
+  <img src="" height="60%" class="mainHeaderLogo pl-0" style="max-height: 50%" routerLink="/" />
 
   <div class="row mx-auto my-auto" style="width: 60%; background-color: white;;" *ngIf="route.url !== '/'">
     <button mat-button style="border: 2px solid #36b6c3; border-radius: 50px; width: 100%" type="submit" class=""
-      (click)="openDialog('action' , 'item')">      
+      (click)="openDialog('action' , 'item')">
       <mat-icon class="clear-icon">filter_list</mat-icon>&nbsp;&nbsp;
     </button>
   </div>
@@ -17,9 +16,20 @@
   </mat-menu>
 
 </mat-toolbar>
-<br><br>
-
-testing reload
+<br><br><br><br>
 
 <p class="top-row-header pt-4" style="text-align: center;">Kota Shop Inventory</p>
-<div id="inventory-table"></div>
+
+<div class="row mx-auto my-auto">
+  <div class="col mx-auto my-auto">
+    <p class="top-row-header pt-4" style="text-align: center;">Add Items Below</p>
+    <mat-form-field appearance="fill" >
+      <mat-label>Input</mat-label>
+      <input matInput>
+    </mat-form-field> 
+
+  </div>
+  <br><br>
+  <div class="col mx-auto my-auto" id="inventory-table">
+  </div>
+</div>
