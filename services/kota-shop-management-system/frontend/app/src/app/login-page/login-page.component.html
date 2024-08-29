@@ -12,7 +12,7 @@
   </div>
 
   <ng-container *ngIf="isLogin; else registrationForm">
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <form [formGroup]="loginForm" (ngSubmit)="authService.login()">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" required>
